@@ -618,6 +618,13 @@ public class Mob {
 //        if (Util.isTrue(10, 100)) {    //up bí kíp
 //            list.add(new ItemMap(zone, 2076, 1, x, player.location.y, player.id));}
         //    }
+        // Drop Bí kíp (590) tại Hành Tinh Yardart (maps 131-133) - tỉ lệ 30%
+        // Mộc nhân (tempId=0) nên dùng tempId >= 0
+        if (this.zone.map.mapId >= 131 && this.zone.map.mapId <= 133) {
+            if (Util.isTrue(30, 100)) {
+                list.add(new ItemMap(zone, 590, 1, x, player.location.y, player.id));
+            }
+        }
         if (this.tempId > 0 && this.zone.map.mapId >= 156 && this.zone.map.mapId
                 <= 159) {
             if (Util.isTrue(10, 100)) {    //up bí kíp
