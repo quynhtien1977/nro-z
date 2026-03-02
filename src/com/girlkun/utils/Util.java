@@ -41,6 +41,10 @@ public class Util {
         return -idPlayer - 120_000_000;
     }
 
+    public static int createIdDuongTank(int idPlayer) {
+        return -idPlayer - 200_000_000;
+    }
+
     public static int[] pickNRandInArr(int[] array, int n) {
         List<Integer> list = new ArrayList<Integer>(array.length);
         for (int i : array) {
@@ -164,7 +168,7 @@ public class Util {
     }
 
     public static int trum(double a) {
-        //Telegram: @Tamkjll
+        // Telegram: @Tamkjll
         if (a > 2123456789) {
             a = 2123456789;
         }
@@ -194,29 +198,29 @@ public class Util {
         return System.currentTimeMillis() - lastTime > miniTimeTarget;
     }
 
-    private static final char[] SOURCE_CHARACTERS = {'À', 'Á', 'Â', 'Ã', 'È', 'É',
-        'Ê', 'Ì', 'Í', 'Ò', 'Ó', 'Ô', 'Õ', 'Ù', 'Ú', 'Ý', 'à', 'á', 'â',
-        'ã', 'è', 'é', 'ê', 'ì', 'í', 'ò', 'ó', 'ô', 'õ', 'ù', 'ú', 'ý',
-        'Ă', 'ă', 'Đ', 'đ', 'Ĩ', 'ĩ', 'Ũ', 'ũ', 'Ơ', 'ơ', 'Ư', 'ư', 'Ạ',
-        'ạ', 'Ả', 'ả', 'Ấ', 'ấ', 'Ầ', 'ầ', 'Ẩ', 'ẩ', 'Ẫ', 'ẫ', 'Ậ', 'ậ',
-        'Ắ', 'ắ', 'Ằ', 'ằ', 'Ẳ', 'ẳ', 'Ẵ', 'ẵ', 'Ặ', 'ặ', 'Ẹ', 'ẹ', 'Ẻ',
-        'ẻ', 'Ẽ', 'ẽ', 'Ế', 'ế', 'Ề', 'ề', 'Ể', 'ể', 'Ễ', 'ễ', 'Ệ', 'ệ',
-        'Ỉ', 'ỉ', 'Ị', 'ị', 'Ọ', 'ọ', 'Ỏ', 'ỏ', 'Ố', 'ố', 'Ồ', 'ồ', 'Ổ',
-        'ổ', 'Ỗ', 'ỗ', 'Ộ', 'ộ', 'Ớ', 'ớ', 'Ờ', 'ờ', 'Ở', 'ở', 'Ỡ', 'ỡ',
-        'Ợ', 'ợ', 'Ụ', 'ụ', 'Ủ', 'ủ', 'Ứ', 'ứ', 'Ừ', 'ừ', 'Ử', 'ử', 'Ữ',
-        'ữ', 'Ự', 'ự',};
+    private static final char[] SOURCE_CHARACTERS = { 'À', 'Á', 'Â', 'Ã', 'È', 'É',
+            'Ê', 'Ì', 'Í', 'Ò', 'Ó', 'Ô', 'Õ', 'Ù', 'Ú', 'Ý', 'à', 'á', 'â',
+            'ã', 'è', 'é', 'ê', 'ì', 'í', 'ò', 'ó', 'ô', 'õ', 'ù', 'ú', 'ý',
+            'Ă', 'ă', 'Đ', 'đ', 'Ĩ', 'ĩ', 'Ũ', 'ũ', 'Ơ', 'ơ', 'Ư', 'ư', 'Ạ',
+            'ạ', 'Ả', 'ả', 'Ấ', 'ấ', 'Ầ', 'ầ', 'Ẩ', 'ẩ', 'Ẫ', 'ẫ', 'Ậ', 'ậ',
+            'Ắ', 'ắ', 'Ằ', 'ằ', 'Ẳ', 'ẳ', 'Ẵ', 'ẵ', 'Ặ', 'ặ', 'Ẹ', 'ẹ', 'Ẻ',
+            'ẻ', 'Ẽ', 'ẽ', 'Ế', 'ế', 'Ề', 'ề', 'Ể', 'ể', 'Ễ', 'ễ', 'Ệ', 'ệ',
+            'Ỉ', 'ỉ', 'Ị', 'ị', 'Ọ', 'ọ', 'Ỏ', 'ỏ', 'Ố', 'ố', 'Ồ', 'ồ', 'Ổ',
+            'ổ', 'Ỗ', 'ỗ', 'Ộ', 'ộ', 'Ớ', 'ớ', 'Ờ', 'ờ', 'Ở', 'ở', 'Ỡ', 'ỡ',
+            'Ợ', 'ợ', 'Ụ', 'ụ', 'Ủ', 'ủ', 'Ứ', 'ứ', 'Ừ', 'ừ', 'Ử', 'ử', 'Ữ',
+            'ữ', 'Ự', 'ự', };
 
-    private static final char[] DESTINATION_CHARACTERS = {'A', 'A', 'A', 'A', 'E',
-        'E', 'E', 'I', 'I', 'O', 'O', 'O', 'O', 'U', 'U', 'Y', 'a', 'a',
-        'a', 'a', 'e', 'e', 'e', 'i', 'i', 'o', 'o', 'o', 'o', 'u', 'u',
-        'y', 'A', 'a', 'D', 'd', 'I', 'i', 'U', 'u', 'O', 'o', 'U', 'u',
-        'A', 'a', 'A', 'a', 'A', 'a', 'A', 'a', 'A', 'a', 'A', 'a', 'A',
-        'a', 'A', 'a', 'A', 'a', 'A', 'a', 'A', 'a', 'A', 'a', 'E', 'e',
-        'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E',
-        'e', 'I', 'i', 'I', 'i', 'O', 'o', 'O', 'o', 'O', 'o', 'O', 'o',
-        'O', 'o', 'O', 'o', 'O', 'o', 'O', 'o', 'O', 'o', 'O', 'o', 'O',
-        'o', 'O', 'o', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u',
-        'U', 'u', 'U', 'u',};
+    private static final char[] DESTINATION_CHARACTERS = { 'A', 'A', 'A', 'A', 'E',
+            'E', 'E', 'I', 'I', 'O', 'O', 'O', 'O', 'U', 'U', 'Y', 'a', 'a',
+            'a', 'a', 'e', 'e', 'e', 'i', 'i', 'o', 'o', 'o', 'o', 'u', 'u',
+            'y', 'A', 'a', 'D', 'd', 'I', 'i', 'U', 'u', 'O', 'o', 'U', 'u',
+            'A', 'a', 'A', 'a', 'A', 'a', 'A', 'a', 'A', 'a', 'A', 'a', 'A',
+            'a', 'A', 'a', 'A', 'a', 'A', 'a', 'A', 'a', 'A', 'a', 'E', 'e',
+            'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E',
+            'e', 'I', 'i', 'I', 'i', 'O', 'o', 'O', 'o', 'O', 'o', 'O', 'o',
+            'O', 'o', 'O', 'o', 'O', 'o', 'O', 'o', 'O', 'o', 'O', 'o', 'O',
+            'o', 'O', 'o', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u',
+            'U', 'u', 'U', 'u', };
 
     public static char removeAccent(char ch) {
         int index = Arrays.binarySearch(SOURCE_CHARACTERS, ch);
@@ -271,16 +275,20 @@ public class Util {
         List<Integer> giay = Arrays.asList(563, 565, 567);
         int ntl = 561;
         if (ao.contains(tempId)) {
-            it.options.add(new Item.ItemOption(47, highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(501) + 1300)));
+            it.options.add(new Item.ItemOption(47,
+                    highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(501) + 1300)));
         }
         if (quan.contains(tempId)) {
-            it.options.add(new Item.ItemOption(22, highlightsItem(it.itemTemplate.gender == 0, new Random().nextInt(11) + 45)));
+            it.options.add(new Item.ItemOption(22,
+                    highlightsItem(it.itemTemplate.gender == 0, new Random().nextInt(11) + 45)));
         }
         if (gang.contains(tempId)) {
-            it.options.add(new Item.ItemOption(0, highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(1001) + 3500)));
+            it.options.add(new Item.ItemOption(0,
+                    highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(1001) + 3500)));
         }
         if (giay.contains(tempId)) {
-            it.options.add(new Item.ItemOption(23, highlightsItem(it.itemTemplate.gender == 1, new Random().nextInt(11) + 35)));
+            it.options.add(new Item.ItemOption(23,
+                    highlightsItem(it.itemTemplate.gender == 1, new Random().nextInt(11) + 35)));
         }
         if (ntl == tempId) {
             it.options.add(new Item.ItemOption(14, new Random().nextInt(2) + 15));
@@ -306,21 +314,27 @@ public class Util {
         List<Integer> giay = Arrays.asList(269, 273, 277);
         int rd12 = 281;
         if (ao.contains(tempId)) {
-            it.options.add(new Item.ItemOption(47, highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(121) + 350)));//giáp 350-470
+            it.options.add(new Item.ItemOption(47,
+                    highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(121) + 350)));// giáp 350-470
         }
         if (quan.contains(tempId)) {
-            it.options.add(new Item.ItemOption(22, highlightsItem(it.itemTemplate.gender == 0, new Random().nextInt(5) + 20)));//hp 20-24k
+            it.options.add(
+                    new Item.ItemOption(22, highlightsItem(it.itemTemplate.gender == 0, new Random().nextInt(5) + 20)));// hp
+                                                                                                                        // 20-24k
         }
         if (gang.contains(tempId)) {
-            it.options.add(new Item.ItemOption(0, highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(51) + 2200)));//2200-2250
+            it.options.add(new Item.ItemOption(0,
+                    highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(51) + 2200)));// 2200-2250
         }
         if (giay.contains(tempId)) {
-            it.options.add(new Item.ItemOption(23, highlightsItem(it.itemTemplate.gender == 1, new Random().nextInt(4) + 20)));//20-23k ki
+            it.options.add(
+                    new Item.ItemOption(23, highlightsItem(it.itemTemplate.gender == 1, new Random().nextInt(4) + 20)));// 20-23k
+                                                                                                                        // ki
         }
         if (rd12 == tempId) {
-            it.options.add(new Item.ItemOption(14, new Random().nextInt(3) + 10));//10-12cm
+            it.options.add(new Item.ItemOption(14, new Random().nextInt(3) + 10));// 10-12cm
         }
-        it.options.add(new Item.ItemOption(209, 1));//đồ rơi từ boss
+        it.options.add(new Item.ItemOption(209, 1));// đồ rơi từ boss
         if (Util.isTrue(70, 100)) {// tỉ lệ ra spl 1-3 sao 70%
             it.options.add(new Item.ItemOption(107, new Random().nextInt(1) + 3));
         } else if (Util.isTrue(4, 100)) {// tỉ lệ ra spl 5-7 sao 4%
@@ -339,16 +353,20 @@ public class Util {
         List<Integer> giay = Arrays.asList(563, 565, 567);
         int ntl = 561;
         if (ao.contains(tempId)) {
-            it.itemOptions.add(new Item.ItemOption(47, highlightsItem(it.template.gender == 2, new Random().nextInt(501) + 1000)));
+            it.itemOptions.add(
+                    new Item.ItemOption(47, highlightsItem(it.template.gender == 2, new Random().nextInt(501) + 1000)));
         }
         if (quan.contains(tempId)) {
-            it.itemOptions.add(new Item.ItemOption(22, highlightsItem(it.template.gender == 0, new Random().nextInt(11) + 45)));
+            it.itemOptions.add(
+                    new Item.ItemOption(22, highlightsItem(it.template.gender == 0, new Random().nextInt(11) + 45)));
         }
         if (gang.contains(tempId)) {
-            it.itemOptions.add(new Item.ItemOption(0, highlightsItem(it.template.gender == 2, new Random().nextInt(1001) + 3500)));
+            it.itemOptions.add(
+                    new Item.ItemOption(0, highlightsItem(it.template.gender == 2, new Random().nextInt(1001) + 3500)));
         }
         if (giay.contains(tempId)) {
-            it.itemOptions.add(new Item.ItemOption(23, highlightsItem(it.template.gender == 1, new Random().nextInt(11) + 35)));
+            it.itemOptions.add(
+                    new Item.ItemOption(23, highlightsItem(it.template.gender == 1, new Random().nextInt(11) + 35)));
         }
         if (ntl == tempId) {
             it.itemOptions.add(new Item.ItemOption(14, new Random().nextInt(3) + 15));
@@ -362,9 +380,12 @@ public class Util {
         ItemMap it = new ItemMap(zone, tempId, quantity, x, zone.map.yPhysicInTop(x, y - 24), playerId);
         List<Integer> tanjiro = Arrays.asList(1087, 1088, 1091, 1090);
         if (tanjiro.contains(tempId)) {
-            it.options.add(new Item.ItemOption(77, highlightsItem(it.itemTemplate.gender == 3, new Random().nextInt(30) + 1)));
-            it.options.add(new Item.ItemOption(103, highlightsItem(it.itemTemplate.gender == 3, new Random().nextInt(30) + 1)));
-            it.options.add(new Item.ItemOption(50, highlightsItem(it.itemTemplate.gender == 3, new Random().nextInt(30) + 1)));
+            it.options.add(
+                    new Item.ItemOption(77, highlightsItem(it.itemTemplate.gender == 3, new Random().nextInt(30) + 1)));
+            it.options.add(new Item.ItemOption(103,
+                    highlightsItem(it.itemTemplate.gender == 3, new Random().nextInt(30) + 1)));
+            it.options.add(
+                    new Item.ItemOption(50, highlightsItem(it.itemTemplate.gender == 3, new Random().nextInt(30) + 1)));
         }
         it.options.add(new Item.ItemOption(209, 1)); // đồ rơi từ boss
         it.options.add(new Item.ItemOption(30, 1)); // ko thể gd
@@ -385,34 +406,42 @@ public class Util {
         int ntl = 561;
         int nhd = 656;
         if (aotl.contains(tempId)) {
-            it.options.add(new Item.ItemOption(47, highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(501) + 1000)));
+            it.options.add(new Item.ItemOption(47,
+                    highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(501) + 1000)));
         }
         if (quantl.contains(tempId)) {
-            it.options.add(new Item.ItemOption(22, highlightsItem(it.itemTemplate.gender == 0, new Random().nextInt(11) + 45)));
+            it.options.add(new Item.ItemOption(22,
+                    highlightsItem(it.itemTemplate.gender == 0, new Random().nextInt(11) + 45)));
         }
         if (gangtl.contains(tempId)) {
-            it.options.add(new Item.ItemOption(0, highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(1001) + 3500)));
+            it.options.add(new Item.ItemOption(0,
+                    highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(1001) + 3500)));
         }
         if (giaytl.contains(tempId)) {
-            it.options.add(new Item.ItemOption(23, highlightsItem(it.itemTemplate.gender == 1, new Random().nextInt(11) + 35)));
+            it.options.add(new Item.ItemOption(23,
+                    highlightsItem(it.itemTemplate.gender == 1, new Random().nextInt(11) + 35)));
         }
         if (ntl == tempId) {
             it.options.add(new Item.ItemOption(14, new Random().nextInt(3) + 15));
         }
         if (aohd.contains(tempId)) {
-            it.options.add(new Item.ItemOption(47, highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(501) + 1500)));
+            it.options.add(new Item.ItemOption(47,
+                    highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(501) + 1500)));
             it.options.add(new Item.ItemOption(30, 1));
         }
         if (quanhd.contains(tempId)) {
-            it.options.add(new Item.ItemOption(22, highlightsItem(it.itemTemplate.gender == 0, new Random().nextInt(11) + 100)));
+            it.options.add(new Item.ItemOption(22,
+                    highlightsItem(it.itemTemplate.gender == 0, new Random().nextInt(11) + 100)));
             it.options.add(new Item.ItemOption(30, 1));
         }
         if (ganghd.contains(tempId)) {
-            it.options.add(new Item.ItemOption(0, highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(1001) + 5500)));
+            it.options.add(new Item.ItemOption(0,
+                    highlightsItem(it.itemTemplate.gender == 2, new Random().nextInt(1001) + 5500)));
             it.options.add(new Item.ItemOption(30, 1));
         }
         if (giayhd.contains(tempId)) {
-            it.options.add(new Item.ItemOption(23, highlightsItem(it.itemTemplate.gender == 1, new Random().nextInt(11) + 80)));
+            it.options.add(new Item.ItemOption(23,
+                    highlightsItem(it.itemTemplate.gender == 1, new Random().nextInt(11) + 80)));
             it.options.add(new Item.ItemOption(30, 1));
         }
         if (nhd == tempId) {
@@ -431,8 +460,9 @@ public class Util {
     }
 
     public static Item sendDo(int itemId, int sql, List<Item.ItemOption> ios) {
-//        InventoryServiceNew.gI().addItemBag(player, ItemService.gI().createItemFromItemShop(is));
-//        InventoryServiceNew.gI().sendItemBags(player);
+        // InventoryServiceNew.gI().addItemBag(player,
+        // ItemService.gI().createItemFromItemShop(is));
+        // InventoryServiceNew.gI().sendItemBags(player);
         Item item = ItemService.gI().createNewItem((short) itemId);
         item.itemOptions.addAll(ios);
         item.itemOptions.add(new Item.ItemOption(107, sql));
