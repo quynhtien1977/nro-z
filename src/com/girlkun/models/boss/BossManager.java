@@ -49,6 +49,7 @@ import com.girlkun.models.boss.list_boss.TauHuyDiet.ThienSuWhis;
 // import com.girlkun.models.boss.list_boss.kami.kamiRin;
 // import com.girlkun.models.boss.list_boss.kami.kamiSooMe;
 import com.girlkun.models.boss.list_boss.nappa.*;
+import com.girlkun.models.boss.list_boss.event.*;
 //import com.girlkun.models.boss.list_boss.phoban.TrungUyXanhLoBdkb;
 import com.girlkun.models.map.Zone;
 import com.girlkun.models.player.Player;
@@ -168,6 +169,19 @@ public class BossManager implements Runnable {
             this.createBoss(BossID.ANTROM);
             this.createBoss(BossID.ANTROM);
 
+            // ========== EVENT BOSSES ==========
+            // Halloween
+            this.createBoss(BossID.BIMA);
+            this.createBoss(BossID.DOI);
+            this.createBoss(BossID.MATROI);
+            // Trung Thu
+            this.createBoss(BossID.KHIDOT);
+            this.createBoss(BossID.NGUYETTHAN);
+            this.createBoss(BossID.NHATTHAN);
+            // Hung Vuong
+            this.createBoss(BossID.THUY_TINH);
+            this.createBoss(BossID.SON_TINH);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -281,7 +295,24 @@ public class BossManager implements Runnable {
                 case BossID.BROLY:
                     return new Broly();
                 case BossID.ANTROM:
-                    
+                    return null;
+                // ========== EVENT BOSSES ==========
+                case BossID.BIMA:
+                    return new BiMa();
+                case BossID.DOI:
+                    return new Doi();
+                case BossID.MATROI:
+                    return new MaTroi();
+                case BossID.KHIDOT:
+                    return new KhiDot();
+                case BossID.NGUYETTHAN:
+                    return new NguyetThan();
+                case BossID.NHATTHAN:
+                    return new NhatThan();
+                case BossID.THUY_TINH:
+                    return new ThuyTinh();
+                case BossID.SON_TINH:
+                    return new SonTinh();
                 default:
                     return null;
             }
