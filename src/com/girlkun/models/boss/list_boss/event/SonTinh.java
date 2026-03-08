@@ -78,8 +78,8 @@ public class SonTinh extends Boss {
             this.zone.lastTimeSonTinhThuyTinhDie = System.currentTimeMillis();
             for (Player pl : this.zone.getNotBosses()) {
                 if (pl != null && !pl.isDie()) {
-                    com.girlkun.services.ItemTimeService.gI().sendItemTime(pl, 4671, 600);
-                    com.girlkun.services.Service.gI().sendThongBao(pl, "Sơn Tinh đã bị đánh bại! Bạn có thể farm Dưa Hấu tại khu vực này trong 10 phút.");
+                    com.girlkun.services.ItemTimeService.gI().sendItemTime(pl, 4671, (int)(com.girlkun.models.map.Zone.TIME_SON_TINH_THUY_TINH_EVENT / 1000));
+                    com.girlkun.services.Service.gI().sendThongBao(pl, "Sơn Tinh đã bị đánh bại! Bạn có thể farm Dưa Hấu tại khu vực này trong " + (com.girlkun.models.map.Zone.TIME_SON_TINH_THUY_TINH_EVENT / 60000) + " phút.");
                 }
             }
         }

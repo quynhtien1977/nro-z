@@ -5069,7 +5069,7 @@ public class NpcFactory {
             public void openBaseMenu(Player player) {
                 if (canOpenNpc(player)) {
                     this.createOtherMenu(player, ConstNpc.BASE_MENU,
-                            "Chào con, ta là Hùng Vương.\nGiặc Ân đang lăm le bờ cõi. Nước non đang cần người tài.\nSơn Tinh Thủy Tinh cũng mang sính lễ đến để kén rể.\nCon có Dưa Hấu không, ta sẽ đổi quà cho con!\n Con có thể kiếm dưa hấu từ những nơi mà Sơn Tinh và Thủy tinh xuất hiện!",
+                            "Chào con, ta là Hùng Vương.\nGiặc Ân đang lăm le bờ cõi. Nước non đang cần người tài.\nSơn Tinh Thủy Tinh cũng mang sính lễ đến để kén rể.\nCon có Dưa Hấu không, ta sẽ đổi quà cho con!\n Con có thể kiếm dưa hấu từ những nơi mà Sơn Tinh và Thủy Tinh xuất hiện!",
                             "Đổi 99 Dưa Hấu\nlấy Búa Sơn Tinh", "Đổi 99 Dưa Hấu\nlấy Bút Thủy Tinh", "Từ chối");
                 }
             }

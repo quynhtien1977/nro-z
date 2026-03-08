@@ -606,7 +606,7 @@ public class Mob {
                     break;
                 }
             }
-            if (!hasHungVuongEventBoss && this.zone.lastTimeSonTinhThuyTinhDie > 0 && (System.currentTimeMillis() - this.zone.lastTimeSonTinhThuyTinhDie) <= 600000) {
+            if (!hasHungVuongEventBoss && this.zone.lastTimeSonTinhThuyTinhDie > 0 && (System.currentTimeMillis() - this.zone.lastTimeSonTinhThuyTinhDie) <= Zone.TIME_SON_TINH_THUY_TINH_EVENT) {
                 hasHungVuongEventBoss = true;
             }
             if (hasHungVuongEventBoss && Util.isTrue(90, 100)) {

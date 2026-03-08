@@ -54,6 +54,7 @@ public class Zone {
     public boolean finishMapMaBu;
 
     public long lastTimeSonTinhThuyTinhDie;
+    public static final long TIME_SON_TINH_THUY_TINH_EVENT = 600000;
 
 
     public List<TrapMap> trapMaps;

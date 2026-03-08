@@ -43,9 +43,12 @@ public class DuongTank extends Boss {
             this.changeToTypePK();
         }
         // Player offline hoặc disconnect
-        if (this.playerTarger != null && Client.gI().getPlayer(this.playerTarger.id) == null) {
-            playerTarger.haveDuongTang = false;
+        if (this.playerTarger == null || Client.gI().getPlayer(this.playerTarger.id) == null) {
+            if (this.playerTarger != null) {
+                playerTarger.haveDuongTang = false;
+            }
             this.leaveMap();
+            return;
         }
         // Đi quá xa -> boss biến mất
         if (this.zone == this.playerTarger.zone && Util.getDistance(playerTarger, this) > 500) {
