@@ -351,6 +351,15 @@ public class Player {
             { 2054, 2055, 2056 },// xd 4
     };
 
+    //Halloween outfits: [outfitId][gender][part: 0=head,1=body,2=leg]
+    public static final short[][][] idOutfitHalloween = {
+            {{757,758,759},{757,758,759},{757,758,759}},  //outfit 0
+            {{760,761,762},{760,761,762},{760,761,762}},  //outfit 1
+            {{651,652,653},{651,652,653},{651,652,653}},  //outfit 2 - BiMa
+            {{654,655,656},{654,655,656},{654,655,656}},  //outfit 3 - Doi
+            {{754,755,756},{754,755,756},{754,755,756}},  //outfit 4 - MaTroi
+    };
+
     // public byte getEffFront() {
     // if (this.inventory.itemsBody.isEmpty() || this.inventory.itemsBody.size() <
     // 10) {
@@ -437,6 +446,12 @@ public class Player {
     // }
 
     public short getHead() {
+        if (effectSkill != null && effectSkill.isHalloween) {
+            int idx = effectSkill.idOutfitHalloween;
+            if (idx >= 0 && idx < idOutfitHalloween.length) {
+                return idOutfitHalloween[idx][this.gender][0];
+            }
+        }
         if (effectSkill != null && effectSkill.isMonkey) {
             return (short) ConstPlayer.HEADMONKEY[effectSkill.levelMonkey - 1];
         } else if (effectSkill != null && effectSkill.isSocola) {
@@ -477,6 +492,12 @@ public class Player {
     }
 
     public short getBody() {
+        if (effectSkill != null && effectSkill.isHalloween) {
+            int idx = effectSkill.idOutfitHalloween;
+            if (idx >= 0 && idx < idOutfitHalloween.length) {
+                return idOutfitHalloween[idx][this.gender][1];
+            }
+        }
         if (effectSkill != null && effectSkill.isMonkey) {
             return 193;
         } else if (effectSkill != null && effectSkill.isSocola) {
@@ -526,6 +547,12 @@ public class Player {
     }
 
     public short getLeg() {
+        if (effectSkill != null && effectSkill.isHalloween) {
+            int idx = effectSkill.idOutfitHalloween;
+            if (idx >= 0 && idx < idOutfitHalloween.length) {
+                return idOutfitHalloween[idx][this.gender][2];
+            }
+        }
         if (effectSkill != null && effectSkill.isMonkey) {
             return 194;
         } else if (effectSkill != null && effectSkill.isCaiBinhChua) {

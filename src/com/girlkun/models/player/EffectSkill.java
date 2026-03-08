@@ -66,6 +66,12 @@ public class EffectSkill {
     public long lastTimeCaiBinhChua;
     public int timeCaiBinhChua;
 
+    //halloween
+    public boolean isHalloween;
+    public long lastTimeHalloween;
+    public int timeHalloween;
+    public int idOutfitHalloween;
+
     public EffectSkill(Player player) {
         this.player = player;
     }
@@ -89,6 +95,9 @@ public class EffectSkill {
         }
         if (isBlindDCTT) {
             EffectSkillService.gI().removeBlindDCTT(this.player);
+        }
+        if (isHalloween) {
+            EffectSkillService.gI().removeHalloween(this.player);
         }
     }
 
@@ -125,6 +134,9 @@ public class EffectSkill {
         if (isCaiBinhChua && (Util.canDoWithTime(this.lastTimeCaiBinhChua, this.timeCaiBinhChua) || this.player.isDie())) {
             isCaiBinhChua = false;
             Service.getInstance().Send_Caitrang(this.player);
+        }
+        if (isHalloween && (Util.canDoWithTime(lastTimeHalloween, timeHalloween) || this.player.isDie())) {
+            EffectSkillService.gI().removeHalloween(this.player);
         }
     }
 

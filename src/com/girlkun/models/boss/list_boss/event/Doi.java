@@ -19,9 +19,16 @@ public class Doi extends Boss {
 
     @Override
     public void reward(Player plKill) {
-        ItemMap it = new ItemMap(this.zone, 585, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
+        ItemMap it = new ItemMap(this.zone, 585, Util.nextInt(1, 5), this.location.x, this.zone.map.yPhysicInTop(this.location.x,
                 this.location.y - 24), plKill.id);
         Service.gI().dropItemMap(this.zone, it);
+    }
+
+    // halloween - apply outfit khi boss tan cong player
+    private void halloween(Player pl) {
+        if (pl != null && !pl.isDie()) {
+            EffectSkillService.gI().setIsHalloween(pl, 3, 1800000); //outfit 3, 30 phut
+        }
     }
 
     @Override
@@ -31,15 +38,15 @@ public class Doi extends Boss {
                 this.chat("Xí hụt");
                 return 0;
             }
-            damage = this.nPoint.subDameInjureWithDeff(damage / 7);
+            damage = this.nPoint.subDameInjureWithDeff(damage / 3);
             if (!piercing && effectSkill.isShielding) {
                 if (damage > nPoint.hpMax) {
                     EffectSkillService.gI().breakShield(this);
                 }
                 damage = 1;
             }
-            if (damage > this.nPoint.hpMax / 50) {
-                damage = this.nPoint.hpMax / 50;
+            if (damage > this.nPoint.hpMax / 20) {
+                damage = this.nPoint.hpMax / 20;
             }
             this.nPoint.subHP(damage);
             if (isDie()) {
@@ -54,15 +61,16 @@ public class Doi extends Boss {
 
     @Override
     public void attack() {
-        if (Util.canDoWithTime(this.lastTimeAttack, Util.nextInt(500, 1000)) && this.typePk == ConstPlayer.PK_ALL) {
+        if (Util.canDoWithTime(this.lastTimeAttack, 500) && this.typePk == ConstPlayer.PK_ALL) {
             this.lastTimeAttack = System.currentTimeMillis();
             try {
                 Player pl = getPlayerAttack();
                 if (pl == null || pl.isDie()) {
                     return;
                 }
-                this.nPoint.dame = pl.nPoint.hpMax / Util.nextInt(30, 50);
-                this.playerSkill.skillSelect = this.playerSkill.skills.get(Util.nextInt(0, this.playerSkill.skills.size() - 1));
+                this.nPoint.dame = pl.nPoint.hpMax / Util.nextInt(80, 120);
+                this.playerSkill.skillSelect = this.playerSkill.skills
+                        .get(Util.nextInt(0, this.playerSkill.skills.size() - 1));
                 if (Util.getDistance(this, pl) <= this.getRangeCanAttackWithSkillSelect()) {
                     if (Util.isTrue(5, 20)) {
                         if (SkillUtil.isUseSkillChuong(this)) {
@@ -73,6 +81,7 @@ public class Doi extends Boss {
                                     Util.nextInt(10) % 2 == 0 ? pl.location.y : pl.location.y - Util.nextInt(0, 50));
                         }
                     }
+                    halloween(pl);
                     SkillService.gI().useSkill(this, pl, null, null);
                     checkPlayerDie(pl);
                 } else {
