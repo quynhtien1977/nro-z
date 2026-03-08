@@ -68,6 +68,9 @@ public class SonTinh extends Boss {
 
     @Override
     public void active() {
+        if (this.typePk == com.girlkun.consts.ConstPlayer.NON_PK) {
+            this.changeToTypePK();
+        }
         this.attack();
     }
 

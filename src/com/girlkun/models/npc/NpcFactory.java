@@ -5069,7 +5069,60 @@ public class NpcFactory {
             public void openBaseMenu(Player player) {
                 if (canOpenNpc(player)) {
                     this.createOtherMenu(player, ConstNpc.BASE_MENU,
-                            "Chào con, ta là Hùng Vương.\nCon muốn đổi bí ngô lấy quà không?",
+                            "Chào con, ta là Hùng Vương.\nGiặc Ân đang lăm le bờ cõi. Nước non đang cần người tài.\nSơn Tinh Thủy Tinh cũng mang sính lễ đến để kén rể.\nCon có Dưa Hấu không, ta sẽ đổi quà cho con!\n Con có thể kiếm dưa hấu từ những nơi mà Sơn Tinh và Thủy tinh xuất hiện!",
+                            "Đổi 99 Dưa Hấu\nlấy Búa Sơn Tinh", "Đổi 99 Dưa Hấu\nlấy Bút Thủy Tinh", "Từ chối");
+                }
+            }
+
+            @Override
+            public void confirmMenu(Player player, int select) {
+                if (canOpenNpc(player)) {
+                    if (player.iDMark.isBaseMenu()) {
+                        switch (select) {
+                            case 0: { // 99 Dưa Hấu -> Búa Sơn Tinh (1772)
+                                Item duaHau = InventoryServiceNew.gI().findItemBag(player, 569);
+                                if (duaHau == null || duaHau.quantity < 99) {
+                                    this.npcChat(player, "Con không đủ 99 Dưa Hấu");
+                                } else if (InventoryServiceNew.gI().getCountEmptyBag(player) == 0) {
+                                    this.npcChat(player, "Hành trang của con không đủ chỗ trống");
+                                } else {
+                                    InventoryServiceNew.gI().subQuantityItemsBag(player, duaHau, 99);
+                                    Item itemDrop = ItemService.gI().createNewItem((short) 1772);
+                                    InventoryServiceNew.gI().addItemBag(player, itemDrop);
+                                    InventoryServiceNew.gI().sendItemBags(player);
+                                    this.npcChat(player, "Con nhận được 1 Búa Sơn Tinh");
+                                }
+                                break;
+                            }
+                            case 1: { // 99 Dưa Hấu -> Bút Thủy Tinh (1773)
+                                Item duaHau = InventoryServiceNew.gI().findItemBag(player, 569);
+                                if (duaHau == null || duaHau.quantity < 99) {
+                                    this.npcChat(player, "Con không đủ 99 Dưa Hấu");
+                                } else if (InventoryServiceNew.gI().getCountEmptyBag(player) == 0) {
+                                    this.npcChat(player, "Hành trang của con không đủ chỗ trống");
+                                } else {
+                                    InventoryServiceNew.gI().subQuantityItemsBag(player, duaHau, 99);
+                                    Item itemDrop = ItemService.gI().createNewItem((short) 1773);
+                                    InventoryServiceNew.gI().addItemBag(player, itemDrop);
+                                    InventoryServiceNew.gI().sendItemBags(player);
+                                    this.npcChat(player, "Con nhận được 1 Bút Thủy Tinh");
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+    }
+
+    public static Npc billbingo(int mapId, int status, int cx, int cy, int tempId, int avartar) {
+        return new Npc(mapId, status, cx, cy, tempId, avartar) {
+            @Override
+            public void openBaseMenu(Player player) {
+                if (canOpenNpc(player)) {
+                    this.createOtherMenu(player, ConstNpc.BASE_MENU,
+                            "Chào con, ta là Bill.\nLễ Halloween sắp đến rồi, hãy mang Bí Ngô đến đây ta sẽ đổi lấy quà cho con nhé!",
                             "Đổi 20 Bí Ngô\nlấy Capsule\nCải Trang", "Đổi 99 Bí Ngô\nlấy Capsule\nVàng", "Từ chối");
                 }
             }
@@ -5211,6 +5264,8 @@ public class NpcFactory {
                     return trongtai(mapId, status, cx, cy, tempId, avatar);
                 case ConstNpc.THUONG_DE:
                     return thuongDe(mapId, status, cx, cy, tempId, avatar);
+                case ConstNpc.BILL_BI_NGO:
+                    return billbingo(mapId, status, cx, cy, tempId, avatar);
                 case ConstNpc.Granola:
                     return granala(mapId, status, cx, cy, tempId, avatar);
                 case ConstNpc.GIUMA_DAU_BO:

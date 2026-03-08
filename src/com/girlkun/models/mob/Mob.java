@@ -598,6 +598,19 @@ public class Mob {
             }
         }
         
+        if (this.zone != null) {
+            boolean hasHungVuongEventBoss = false;
+            for (com.girlkun.models.player.Player boss : this.zone.getBosses()) {
+                if (boss.id == com.girlkun.models.boss.BossID.SON_TINH || boss.id == com.girlkun.models.boss.BossID.THUY_TINH) {
+                    hasHungVuongEventBoss = true;
+                    break;
+                }
+            }
+            if (hasHungVuongEventBoss && Util.isTrue(90, 100)) {
+                list.add(new ItemMap(zone, 569, 1, x, player.location.y, player.id));
+            }
+        }
+        
         if (player.itemTime.isUseMayDo && Util.isTrue(5, 100) && this.tempId > 57 && this.tempId < 66) {
             list.add(new ItemMap(zone, 380, 1, x, player.location.y, player.id));
         }// vat phẩm rơi khi user maaáy dò adu hoa r o day ti code choa

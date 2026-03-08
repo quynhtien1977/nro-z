@@ -27,7 +27,7 @@ public class BiMa extends Boss {
     //halloween - apply outfit khi boss tan cong player
     private void halloween(Player pl) {
         if (pl != null && !pl.isDie()) {
-            EffectSkillService.gI().setIsHalloween(pl, 4, 1800000); //outfit 4, 30 phut
+            EffectSkillService.gI().setIsHalloween(pl, 1, 1800000); //outfit 1 (Bí Ma), 30 phut
         }
     }
 
