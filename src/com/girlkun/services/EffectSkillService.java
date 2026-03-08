@@ -519,6 +519,7 @@ public class EffectSkillService {
     public void removeHalloween(Player player) {
         if (player.effectSkill != null) {
             player.effectSkill.isHalloween = false;
+            ItemTimeService.gI().removeItemTime(player, 5101);
             Service.gI().Send_Caitrang(player);
         }
     }
