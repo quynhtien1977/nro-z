@@ -2475,7 +2475,7 @@ public class BossesData {
             ConstPlayer.TRAI_DAT, //gender
             new short[]{760, 761, 762, -1, -1, -1}, //outfit
             500000, //dame
-            new int[]{500000000}, //hp
+            new int[]{50000000}, //hp
             new int[]{0, 1, 2, 3, 4, 5, 6, 7}, //map join - spawn random map
             new int[][]{
                     {Skill.KAMEJOKO, 7},
@@ -2496,7 +2496,7 @@ public class BossesData {
             ConstPlayer.TRAI_DAT, //gender
             new short[]{654, 655, 656, -1, -1, -1}, //outfit
             400000, //dame
-            new int[]{300000000}, //hp
+            new int[]{30000000}, //hp
             new int[]{0, 1, 2, 3, 4, 5, 6, 7}, //map join
             new int[][]{
                     {Skill.DRAGON, 7},
@@ -2514,7 +2514,7 @@ public class BossesData {
             ConstPlayer.TRAI_DAT, //gender
             new short[]{651, 652, 653, -1, -1, -1}, //outfit
             300000, //dame
-            new int[]{200000000}, //hp
+            new int[]{20000000}, //hp
             new int[]{0, 1, 2, 3, 4, 5, 6, 7}, //map join
             new int[][]{
                     {Skill.MASENKO, 7},
@@ -2533,7 +2533,7 @@ public class BossesData {
             ConstPlayer.NAMEC, //gender
             new short[]{198, 193, 194, -1, -1, -1}, //outfit
             600000, //dame
-            new int[]{400000000}, //hp
+            new int[]{40000000}, //hp
             new int[]{0, 1, 2, 3, 4, 5, 6, 7}, //map join
             new int[][]{
                     {Skill.DRAGON, 7},
