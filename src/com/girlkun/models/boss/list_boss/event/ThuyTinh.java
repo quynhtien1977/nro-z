@@ -31,7 +31,13 @@ public class ThuyTinh extends Boss {
             it.options.add(new Item.ItemOption(14, Util.nextInt(2, 40)));
             it.options.add(new Item.ItemOption(106, Util.nextInt(2, 40)));
             it.options.add(new Item.ItemOption(154, 0));
-            it.options.add(new Item.ItemOption(93, Util.nextInt(1, 15)));
+            if (Util.isTrue(1, 100)) {
+                // Vĩnh viễn (không thêm option 93)
+            } else if (Util.isTrue(5, 100)) {
+                it.options.add(new Item.ItemOption(93, 30));
+            } else {
+                it.options.add(new Item.ItemOption(93, Util.nextInt(1, 15)));
+            }
             Service.gI().dropItemMap(this.zone, it);
         }
     }
@@ -61,6 +67,20 @@ public class ThuyTinh extends Boss {
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public void die(Player plAtt) {
+        if (this.zone != null) {
+            this.zone.lastTimeSonTinhThuyTinhDie = System.currentTimeMillis();
+            for (Player pl : this.zone.getNotBosses()) {
+                if (pl != null && !pl.isDie()) {
+                    com.girlkun.services.ItemTimeService.gI().sendItemTime(pl, 4671, 600);
+                    com.girlkun.services.Service.gI().sendThongBao(pl, "Thủy Tinh đã bị đánh bại! Bạn có thể farm Dưa Hấu tại khu vực này trong 10 phút.");
+                }
+            }
+        }
+        super.die(plAtt);
     }
 
     @Override

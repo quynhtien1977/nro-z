@@ -5088,6 +5088,10 @@ public class NpcFactory {
                                 } else {
                                     InventoryServiceNew.gI().subQuantityItemsBag(player, duaHau, 99);
                                     Item itemDrop = ItemService.gI().createNewItem((short) 1772);
+                                    itemDrop.itemOptions.add(new Item.ItemOption(77, Util.nextInt(10, 20))); // HP %
+                                    itemDrop.itemOptions.add(new Item.ItemOption(103, Util.nextInt(10, 20))); // KI %
+                                    itemDrop.itemOptions.add(new Item.ItemOption(50, Util.nextInt(5, 15)));  // SD %
+                                    itemDrop.itemOptions.add(new Item.ItemOption(14, Util.nextInt(1, 5)));   // Crit %
                                     InventoryServiceNew.gI().addItemBag(player, itemDrop);
                                     InventoryServiceNew.gI().sendItemBags(player);
                                     this.npcChat(player, "Con nhận được 1 Búa Sơn Tinh");
@@ -5103,6 +5107,10 @@ public class NpcFactory {
                                 } else {
                                     InventoryServiceNew.gI().subQuantityItemsBag(player, duaHau, 99);
                                     Item itemDrop = ItemService.gI().createNewItem((short) 1773);
+                                    itemDrop.itemOptions.add(new Item.ItemOption(77, Util.nextInt(10, 20))); // HP %
+                                    itemDrop.itemOptions.add(new Item.ItemOption(103, Util.nextInt(10, 20))); // KI %
+                                    itemDrop.itemOptions.add(new Item.ItemOption(50, Util.nextInt(5, 15)));  // SD %
+                                    itemDrop.itemOptions.add(new Item.ItemOption(14, Util.nextInt(1, 5)));   // Crit %
                                     InventoryServiceNew.gI().addItemBag(player, itemDrop);
                                     InventoryServiceNew.gI().sendItemBags(player);
                                     this.npcChat(player, "Con nhận được 1 Bút Thủy Tinh");

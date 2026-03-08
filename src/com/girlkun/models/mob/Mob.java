@@ -606,6 +606,9 @@ public class Mob {
                     break;
                 }
             }
+            if (!hasHungVuongEventBoss && this.zone.lastTimeSonTinhThuyTinhDie > 0 && (System.currentTimeMillis() - this.zone.lastTimeSonTinhThuyTinhDie) <= 600000) {
+                hasHungVuongEventBoss = true;
+            }
             if (hasHungVuongEventBoss && Util.isTrue(90, 100)) {
                 list.add(new ItemMap(zone, 569, 1, x, player.location.y, player.id));
             }

@@ -53,6 +53,9 @@ public class Zone {
     public boolean finishBlackBallWar;
     public boolean finishMapMaBu;
 
+    public long lastTimeSonTinhThuyTinhDie;
+
+
     public List<TrapMap> trapMaps;
     public boolean finishnguhs;
     @Setter
