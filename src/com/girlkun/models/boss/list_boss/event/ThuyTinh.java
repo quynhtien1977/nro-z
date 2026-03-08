@@ -31,7 +31,13 @@ public class ThuyTinh extends Boss {
             it.options.add(new Item.ItemOption(14, Util.nextInt(2, 40)));
             it.options.add(new Item.ItemOption(106, Util.nextInt(2, 40)));
             it.options.add(new Item.ItemOption(154, 0));
-            it.options.add(new Item.ItemOption(93, Util.nextInt(1, 15)));
+            if (Util.isTrue(1, 100)) {
+                // Vĩnh viễn (không thêm option 93)
+            } else if (Util.isTrue(5, 100)) {
+                it.options.add(new Item.ItemOption(93, 30));
+            } else {
+                it.options.add(new Item.ItemOption(93, Util.nextInt(1, 15)));
+            }
             Service.gI().dropItemMap(this.zone, it);
         }
     }
@@ -64,7 +70,24 @@ public class ThuyTinh extends Boss {
     }
 
     @Override
+    public void die(Player plAtt) {
+        if (this.zone != null) {
+            this.zone.lastTimeSonTinhThuyTinhDie = System.currentTimeMillis();
+            for (Player pl : this.zone.getNotBosses()) {
+                if (pl != null && !pl.isDie()) {
+                    com.girlkun.services.ItemTimeService.gI().sendItemTime(pl, 4671, (int)(com.girlkun.models.map.Zone.TIME_SON_TINH_THUY_TINH_EVENT / 1000));
+                    com.girlkun.services.Service.gI().sendThongBao(pl, "Thủy Tinh đã bị đánh bại! Bạn có thể farm Dưa Hấu tại khu vực này trong " + (com.girlkun.models.map.Zone.TIME_SON_TINH_THUY_TINH_EVENT / 60000) + " phút.");
+                }
+            }
+        }
+        super.die(plAtt);
+    }
+
+    @Override
     public void active() {
+        if (this.typePk == com.girlkun.consts.ConstPlayer.NON_PK) {
+            this.changeToTypePK();
+        }
         this.attack();
     }
 

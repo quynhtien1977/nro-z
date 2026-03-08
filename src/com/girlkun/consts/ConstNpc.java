@@ -102,6 +102,7 @@ public class ConstNpc {
         public static final byte TAPION = 53;
         public static final byte LY_TIEU_NUONG = 54;
         public static final byte BILL = 55;
+        public static final byte BILL_BI_NGO = 107;
         public static final byte WHIS = 56;
         public static final byte CHAMPA = 57;
         public static final byte VADOS = 58;

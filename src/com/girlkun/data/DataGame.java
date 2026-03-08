@@ -17,9 +17,9 @@ import java.util.*;
 public class DataGame {
 
     public static byte vsData = 80;
-    public static byte vsMap = 80;
+    public static byte vsMap = 81;
     public static byte vsSkill = 6;
-    public static byte vsItem = 80;
+    public static byte vsItem = 81;
     public static int vsRes = 752011;
 
     public static String LINK_IP_PORT = "Nro Green 01:192.168.1.11:14445:0,0,0";

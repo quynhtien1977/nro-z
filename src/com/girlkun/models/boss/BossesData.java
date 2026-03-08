@@ -2565,7 +2565,7 @@ public class BossesData {
             }, //textS
             new String[]{"|-1|Ánh sáng của ta sẽ chiếu rọi!"}, //textM
             new String[]{"|-1|Ánh trăng phai mờ..."}, //textE
-            REST_30_M,
+            REST_10_M,
             TypeAppear.DEFAULT_APPEAR
     );
 
@@ -2586,7 +2586,7 @@ public class BossesData {
             }, //textS
             new String[]{"|-1|Cảm nhận sức mạnh của bóng tối!"}, //textM
             new String[]{"|-1|Bóng tối bao trùm..."}, //textE
-            REST_30_M,
+            REST_10_M,
             TypeAppear.APPEAR_WITH_ANOTHER
     );
 
@@ -2596,7 +2596,7 @@ public class BossesData {
             ConstPlayer.NAMEC, //gender
             new short[]{311, 312, 313, -1, -1, -1}, //outfit
             900000, //dame
-            new int[]{1500000000}, //hp
+            new int[]{15000000}, //hp
             new int[]{0, 1, 2, 3, 4, 5, 6, 7}, //map join
             new int[][]{
                     {Skill.KAMEJOKO, 7},
@@ -2609,7 +2609,7 @@ public class BossesData {
             }, //textS
             new String[]{"|-1|Sóng thần đang tới!"}, //textM
             new String[]{"|-1|Nước rút... ta sẽ trở lại!"}, //textE
-            REST_1_H,
+            REST_10_M,
             TypeAppear.DEFAULT_APPEAR
     );
 
@@ -2618,7 +2618,7 @@ public class BossesData {
             ConstPlayer.TRAI_DAT, //gender
             new short[]{314, 315, 316, -1, -1, -1}, //outfit
             850000, //dame
-            new int[]{1200000000}, //hp
+            new int[]{12000000}, //hp
             new int[]{0, 1, 2, 3, 4, 5, 6, 7}, //map join
             new int[][]{
                     {Skill.DEMON, 7},
@@ -2631,8 +2631,8 @@ public class BossesData {
             }, //textS
             new String[]{"|-1|Sức mạnh của núi rừng!"}, //textM
             new String[]{"|-1|Núi tan... nhưng ta vẫn chiến!"}, //textE
-            REST_1_H,
-            TypeAppear.APPEAR_WITH_ANOTHER
+            REST_10_M,
+            TypeAppear.DEFAULT_APPEAR
     );
 }
 

@@ -598,6 +598,23 @@ public class Mob {
             }
         }
         
+        if (this.zone != null) {
+            boolean hasHungVuongEventBoss = false;
+            for (com.girlkun.models.player.Player boss : this.zone.getBosses()) {
+                if (boss.id == com.girlkun.models.boss.BossID.SON_TINH || boss.id == com.girlkun.models.boss.BossID.THUY_TINH) {
+                    hasHungVuongEventBoss = true;
+                    break;
+                }
+            }
+            if (!hasHungVuongEventBoss && this.zone.lastTimeSonTinhThuyTinhDie > 0 && (System.currentTimeMillis() - this.zone.lastTimeSonTinhThuyTinhDie) <= Zone.TIME_SON_TINH_THUY_TINH_EVENT) {
+                hasHungVuongEventBoss = true;
+            }
+            // Dưa Hấu (ID 569) event drop: use a moderate 30% rate to avoid flooding the economy
+            if (hasHungVuongEventBoss && Util.isTrue(30, 100)) {
+                list.add(new ItemMap(zone, 569, 1, x, player.location.y, player.id));
+            }
+        }
+        
         if (player.itemTime.isUseMayDo && Util.isTrue(5, 100) && this.tempId > 57 && this.tempId < 66) {
             list.add(new ItemMap(zone, 380, 1, x, player.location.y, player.id));
         }// vat phẩm rơi khi user maaáy dò adu hoa r o day ti code choa

@@ -98,6 +98,13 @@ public class ItemTimeService {
         if (player.itemTime.isUseTDLT) {
             sendItemTime(player, 4387, player.itemTime.timeTDLT / 1000);
         }
+        if (player.zone != null && player.zone.lastTimeSonTinhThuyTinhDie > 0) {
+            int secondPassed = (int) ((System.currentTimeMillis() - player.zone.lastTimeSonTinhThuyTinhDie) / 1000);
+            int secondsLeft = (int)(com.girlkun.models.map.Zone.TIME_SON_TINH_THUY_TINH_EVENT / 1000) - secondPassed;
+            if (secondsLeft > 0) {
+                sendItemTime(player, 4671, secondsLeft);
+            }
+        }
     }
 
     //bật tđlt

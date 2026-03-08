@@ -43,18 +43,29 @@ public class DuongTank extends Boss {
             this.changeToTypePK();
         }
         // Player offline hoặc disconnect
-        if (this.playerTarger != null && Client.gI().getPlayer(this.playerTarger.id) == null) {
-            playerTarger.haveDuongTang = false;
+        if (this.playerTarger == null || Client.gI().getPlayer(this.playerTarger.id) == null) {
+            if (this.playerTarger != null) {
+                playerTarger.haveDuongTang = false;
+            }
             this.leaveMap();
+            return;
         }
         // Đi quá xa -> boss biến mất
-        if (Util.getDistance(playerTarger, this) > 500 && this.zone == this.playerTarger.zone) {
+        if (this.zone == this.playerTarger.zone && Util.getDistance(playerTarger, this) > 500) {
             Service.gI().sendThongBao(this.playerTarger, "Đi quá xa, Boss hộ tống đã bị lạc!");
             playerTarger.haveDuongTang = false;
             this.leaveMap();
+            return;
+        }
+        // Đổi khu vực (cùng map) -> boss biến mất
+        if (this.zone != null && this.playerTarger.zone != null && this.zone.map.mapId == this.playerTarger.zone.map.mapId && this.zone.zoneId != this.playerTarger.zone.zoneId) {
+            Service.gI().sendThongBao(this.playerTarger, "Hộ tống thất bại do bạn đã chuyển khu vực!");
+            playerTarger.haveDuongTang = false;
+            this.leaveMap();
+            return;
         }
         // Cảnh báo khoảng cách
-        if (Util.getDistance(playerTarger, this) > 300 && this.zone == this.playerTarger.zone) {
+        if (this.zone == this.playerTarger.zone && Util.getDistance(playerTarger, this) > 300) {
             Service.gI().sendThongBao(this.playerTarger, "Khoảng cách quá xa, sắp mất Boss hộ tống!");
         }
         // Di chuyển theo player
