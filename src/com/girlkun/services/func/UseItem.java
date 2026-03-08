@@ -460,6 +460,7 @@ public class UseItem {
                         //  UseItem.gI().Hopts(pl, item);
                         //      break;
                         case 1997://hop qua skh, item 2002 xd
+                        case 818: // Capsule Halloween
                             Openhopct(pl, item);
                             break;
                         case 1998://hop qua skh, item 2002 xd
@@ -1360,8 +1361,8 @@ public class UseItem {
 
     private void openCSKBDB(Player pl, Item item) {
         if (InventoryServiceNew.gI().getCountEmptyBag(pl) > 0) {
-            short[] temp = {861};
-            int[][] gold = {{15000, 20000}};
+            short[] temp = {861, 861, 861, 861, 381, 382, 383, 384, 385, 457, 457, 818, 729, 730, 731, 732, 742, 806, 819, 862, 863, 864, 883, 884, 898, 904, 905, 906, 907, 911, 985};
+            int[][] gold = {{15000, 150000}};
             byte index = (byte) Util.nextInt(0, temp.length - 1);
             short[] icon = new short[2];
             icon[0] = item.template.iconID;
@@ -1374,7 +1375,17 @@ public class UseItem {
                 icon[1] = 7743;
             } else {
                 Item it = ItemService.gI().createNewItem(temp[index]);
-                it.itemOptions.add(new ItemOption(73, 0));
+                it.itemOptions.add(new ItemOption(73, 0)); // khoa gd
+                if (it.template.id == 457) {
+                    it.quantity = Util.nextInt(2, 20);
+                } else if (it.template.type == 5) { // cai trang
+                    it.itemOptions.add(new ItemOption(50, Util.nextInt(20, 32))); // sd
+                    it.itemOptions.add(new ItemOption(77, Util.nextInt(20, 45))); // hp
+                    it.itemOptions.add(new ItemOption(103, Util.nextInt(20, 45))); // ki
+                    if (Util.isTrue(8, 10)) { // 80% 7 ngay
+                        it.itemOptions.add(new ItemOption(93, 7));
+                    }
+                }
                 InventoryServiceNew.gI().addItemBag(pl, it);
                 icon[1] = it.template.iconID;
             }

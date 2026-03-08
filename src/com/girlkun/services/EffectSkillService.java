@@ -503,4 +503,24 @@ public class EffectSkillService {
         }
     }
 
+
+    //Halloween *****************************************************************
+    public void setIsHalloween(Player player, int outFit, int time) {
+        if (player.effectSkill != null) {
+            player.effectSkill.isHalloween = true;
+            player.effectSkill.idOutfitHalloween = outFit != -1 ? outFit : com.girlkun.utils.Util.nextInt(5);
+            player.effectSkill.timeHalloween = time;
+            player.effectSkill.lastTimeHalloween = System.currentTimeMillis();
+            ItemTimeService.gI().sendItemTime(player, 5101, time / 1000);
+            Service.gI().Send_Caitrang(player);
+        }
+    }
+
+    public void removeHalloween(Player player) {
+        if (player.effectSkill != null) {
+            player.effectSkill.isHalloween = false;
+            ItemTimeService.gI().removeItemTime(player, 5101);
+            Service.gI().Send_Caitrang(player);
+        }
+    }
 }

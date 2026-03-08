@@ -179,4 +179,17 @@ public class BossID {
 
     
      public static final byte LuyenTap = -92;
+
+    // Event bosses
+    // Halloween
+    public static final int BIMA = -5001;
+    public static final int DOI = -5002;
+    public static final int MATROI = -5003;
+    // Trung Thu
+    public static final int KHIDOT = -5004;
+    public static final int NGUYETTHAN = -5005;
+    public static final int NHATTHAN = -5006;
+    // Hung Vuong
+    public static final int SON_TINH = -5007;
+    public static final int THUY_TINH = -5008;
 }

@@ -5063,6 +5063,59 @@ public class NpcFactory {
         };
     }
 
+    public static Npc hungVuong(int mapId, int status, int cx, int cy, int tempId, int avartar) {
+        return new Npc(mapId, status, cx, cy, tempId, avartar) {
+            @Override
+            public void openBaseMenu(Player player) {
+                if (canOpenNpc(player)) {
+                    this.createOtherMenu(player, ConstNpc.BASE_MENU,
+                            "Chào con, ta là Hùng Vương.\nCon muốn đổi bí ngô lấy quà không?",
+                            "Đổi 20 Bí Ngô\nlấy Capsule\nCải Trang", "Đổi 99 Bí Ngô\nlấy Capsule\nVàng", "Từ chối");
+                }
+            }
+
+            @Override
+            public void confirmMenu(Player player, int select) {
+                if (canOpenNpc(player)) {
+                    if (player.iDMark.isBaseMenu()) {
+                        switch (select) {
+                            case 0: { // 20 Bí Ngô -> Capsule Cải Trang (818)
+                                Item biNgo = InventoryServiceNew.gI().findItemBag(player, 585);
+                                if (biNgo == null || biNgo.quantity < 20) {
+                                    this.npcChat(player, "Con không đủ 20 Bí Ngô");
+                                } else if (InventoryServiceNew.gI().getCountEmptyBag(player) == 0) {
+                                    this.npcChat(player, "Hành trang của con không đủ chỗ trống");
+                                } else {
+                                    InventoryServiceNew.gI().subQuantityItemsBag(player, biNgo, 20);
+                                    Item capsule = ItemService.gI().createNewItem((short) 818);
+                                    InventoryServiceNew.gI().addItemBag(player, capsule);
+                                    InventoryServiceNew.gI().sendItemBags(player);
+                                    this.npcChat(player, "Con nhận được 1 Capsule Cải Trang");
+                                }
+                                break;
+                            }
+                            case 1: { // 99 Bí Ngô -> Capsule Vàng (574)
+                                Item biNgo = InventoryServiceNew.gI().findItemBag(player, 585);
+                                if (biNgo == null || biNgo.quantity < 99) {
+                                    this.npcChat(player, "Con không đủ 99 Bí Ngô");
+                                } else if (InventoryServiceNew.gI().getCountEmptyBag(player) == 0) {
+                                    this.npcChat(player, "Hành trang của con không đủ chỗ trống");
+                                } else {
+                                    InventoryServiceNew.gI().subQuantityItemsBag(player, biNgo, 99);
+                                    Item capsule = ItemService.gI().createNewItem((short) 574);
+                                    InventoryServiceNew.gI().addItemBag(player, capsule);
+                                    InventoryServiceNew.gI().sendItemBags(player);
+                                    this.npcChat(player, "Con nhận được 1 Capsule Vàng");
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+    }
+
     public static Npc granala(int mapId, int status, int cx, int cy, int tempId, int avartar) {
         return new Npc(mapId, status, cx, cy, tempId, avartar) {
             @Override
@@ -5224,6 +5277,8 @@ public class NpcFactory {
                     return hoanguc(mapId, status, cx, cy, tempId, avatar);
                 case ConstNpc.ONG_GIA_NOEL:
                     return onggianoel(mapId, status, cx, cy, tempId, avatar);
+                case ConstNpc.HUNG_VUONG:
+                    return hungVuong(mapId, status, cx, cy, tempId, avatar);
                 // case ConstNpc.GOHAN_NHAT_NGUYET:
                 // return gohannn(mapId, status, cx, cy, tempId, avatar);
                 default:
