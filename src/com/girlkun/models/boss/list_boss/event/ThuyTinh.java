@@ -84,10 +84,32 @@ public class ThuyTinh extends Boss {
     }
 
     @Override
-    public void active() {
-        if (this.typePk == com.girlkun.consts.ConstPlayer.NON_PK) {
-            this.changeToTypePK();
+    public void joinMap() {
+        super.joinMap();
+        Service.gI().changeFlag(this, 2);
+    }
+
+    @Override
+    public Player getPlayerAttack() {
+        java.util.List<Player> plNotVoHinh = new java.util.ArrayList<>();
+        for (Player pl : this.zone.getNotBosses()) {
+            if (pl != null && (pl.effectSkin == null || !pl.effectSkin.isVoHinh) && pl.cFlag != this.cFlag) {
+                plNotVoHinh.add(pl);
+            }
         }
+        for (Player pl : this.zone.getBosses()) {
+            if (pl != null && !pl.equals(this) && pl.cFlag == 1) {
+                plNotVoHinh.add(pl);
+            }
+        }
+        if (!plNotVoHinh.isEmpty()) {
+            return plNotVoHinh.get(Util.nextInt(0, plNotVoHinh.size() - 1));
+        }
+        return null;
+    }
+
+    @Override
+    public void active() {
         this.attack();
     }
 

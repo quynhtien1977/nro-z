@@ -5092,6 +5092,11 @@ public class NpcFactory {
                                     itemDrop.itemOptions.add(new Item.ItemOption(103, Util.nextInt(10, 20))); // KI %
                                     itemDrop.itemOptions.add(new Item.ItemOption(50, Util.nextInt(5, 15)));  // SD %
                                     itemDrop.itemOptions.add(new Item.ItemOption(14, Util.nextInt(1, 5)));   // Crit %
+                                    if (Util.isTrue(10, 100)) {
+                                        // Vĩnh viễn (10%)
+                                    } else {
+                                        itemDrop.itemOptions.add(new Item.ItemOption(93, Util.nextInt(1, 15))); // HSD (90%)
+                                    }
                                     InventoryServiceNew.gI().addItemBag(player, itemDrop);
                                     InventoryServiceNew.gI().sendItemBags(player);
                                     this.npcChat(player, "Con nhận được 1 Búa Sơn Tinh");
@@ -5111,6 +5116,11 @@ public class NpcFactory {
                                     itemDrop.itemOptions.add(new Item.ItemOption(103, Util.nextInt(10, 20))); // KI %
                                     itemDrop.itemOptions.add(new Item.ItemOption(50, Util.nextInt(5, 15)));  // SD %
                                     itemDrop.itemOptions.add(new Item.ItemOption(14, Util.nextInt(1, 5)));   // Crit %
+                                    if (Util.isTrue(10, 100)) {
+                                        // Vĩnh viễn (10%)
+                                    } else {
+                                        itemDrop.itemOptions.add(new Item.ItemOption(93, Util.nextInt(1, 15))); // HSD (90%)
+                                    }
                                     InventoryServiceNew.gI().addItemBag(player, itemDrop);
                                     InventoryServiceNew.gI().sendItemBags(player);
                                     this.npcChat(player, "Con nhận được 1 Bút Thủy Tinh");

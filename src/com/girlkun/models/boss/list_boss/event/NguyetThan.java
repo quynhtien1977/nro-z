@@ -23,7 +23,7 @@ public class NguyetThan extends Boss {
     public void reward(Player plKill) {
         // Drop reward item with options
         if (this.zone != null) {
-            ItemMap it = new ItemMap(this.zone, 2123, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
+            ItemMap it = new ItemMap(this.zone, 472, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
                     this.location.y - 24), plKill.id);
             it.options.add(new Item.ItemOption(77, Util.nextInt(20, 25)));
             it.options.add(new Item.ItemOption(103, Util.nextInt(20, 25)));
@@ -62,6 +62,31 @@ public class NguyetThan extends Boss {
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public void joinMap() {
+        super.joinMap();
+        Service.gI().changeFlag(this, 1);
+    }
+
+    @Override
+    public Player getPlayerAttack() {
+        java.util.List<Player> plNotVoHinh = new java.util.ArrayList<>();
+        for (Player pl : this.zone.getNotBosses()) {
+            if (pl != null && (pl.effectSkin == null || !pl.effectSkin.isVoHinh) && pl.cFlag != 0 && pl.cFlag != 8 && pl.cFlag != this.cFlag) {
+                plNotVoHinh.add(pl);
+            }
+        }
+        for (Player pl : this.zone.getBosses()) {
+            if (pl != null && !pl.equals(this) && pl.cFlag == 2) {
+                plNotVoHinh.add(pl);
+            }
+        }
+        if (!plNotVoHinh.isEmpty()) {
+            return plNotVoHinh.get(Util.nextInt(0, plNotVoHinh.size() - 1));
+        }
+        return null;
     }
 
     @Override

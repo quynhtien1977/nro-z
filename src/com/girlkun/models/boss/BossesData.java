@@ -2550,9 +2550,9 @@ public class BossesData {
     public static final BossData NGUYETTHAN = new BossData(
             "Nguyệt Thần", //name
             ConstPlayer.XAYDA, //gender
-            new short[]{2058, 2059, 2060, -1, -1, -1}, //outfit
-            800000, //dame
-            new int[]{1000000000}, //hp
+            new short[]{2060, 2058, 2059, -1, -1, -1}, //outfit NRO2014 (Fixed order: Head, Body, Leg)
+            80000, //dame
+            new int[]{10000000}, //hp
             new int[]{0, 1, 2, 3, 4, 5, 6, 7}, //map join
             new int[][]{
                     {Skill.KAMEJOKO, 7},
@@ -2566,15 +2566,16 @@ public class BossesData {
             new String[]{"|-1|Ánh sáng của ta sẽ chiếu rọi!"}, //textM
             new String[]{"|-1|Ánh trăng phai mờ..."}, //textE
             REST_10_M,
-            TypeAppear.DEFAULT_APPEAR
+            new int[]{BossID.NHATTHAN}
     );
 
     public static final BossData NHATTHAN = new BossData(
             "Nhật Thần", //name
             ConstPlayer.XAYDA, //gender
-            new short[]{2065, 2066, 2067, -1, -1, -1}, //outfit
-            700000, //dame
-            new int[]{800000000}, //hp
+            new short[]{2066, 2067, 2065, -1, -1, -1}, //outfit NRO2014 (Fixed order: Head, Body, Leg)
+            70000, //dame
+
+            new int[]{8000000}, //hp
             new int[]{0, 1, 2, 3, 4, 5, 6, 7}, //map join
             new int[][]{
                     {Skill.DEMON, 7},
@@ -2586,7 +2587,6 @@ public class BossesData {
             }, //textS
             new String[]{"|-1|Cảm nhận sức mạnh của bóng tối!"}, //textM
             new String[]{"|-1|Bóng tối bao trùm..."}, //textE
-            REST_10_M,
             TypeAppear.APPEAR_WITH_ANOTHER
     );
 
@@ -2610,7 +2610,7 @@ public class BossesData {
             new String[]{"|-1|Sóng thần đang tới!"}, //textM
             new String[]{"|-1|Nước rút... ta sẽ trở lại!"}, //textE
             REST_10_M,
-            TypeAppear.DEFAULT_APPEAR
+            new int[]{BossID.SON_TINH}
     );
 
     public static final BossData SON_TINH = new BossData(
@@ -2631,8 +2631,7 @@ public class BossesData {
             }, //textS
             new String[]{"|-1|Sức mạnh của núi rừng!"}, //textM
             new String[]{"|-1|Núi tan... nhưng ta vẫn chiến!"}, //textE
-            REST_10_M,
-            TypeAppear.DEFAULT_APPEAR
+            TypeAppear.APPEAR_WITH_ANOTHER
     );
 }
 
