@@ -609,7 +609,8 @@ public class Mob {
             if (!hasHungVuongEventBoss && this.zone.lastTimeSonTinhThuyTinhDie > 0 && (System.currentTimeMillis() - this.zone.lastTimeSonTinhThuyTinhDie) <= Zone.TIME_SON_TINH_THUY_TINH_EVENT) {
                 hasHungVuongEventBoss = true;
             }
-            if (hasHungVuongEventBoss && Util.isTrue(90, 100)) {
+            // Dưa Hấu (ID 569) event drop: use a moderate 30% rate to avoid flooding the economy
+            if (hasHungVuongEventBoss && Util.isTrue(30, 100)) {
                 list.add(new ItemMap(zone, 569, 1, x, player.location.y, player.id));
             }
         }
