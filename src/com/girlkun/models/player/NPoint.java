@@ -788,6 +788,10 @@ public class NPoint {
                 || this.player.isPet && ((Pet) this.player).master.itemTime.isEatMeal) {
             this.dame += ((long) this.dame * 10 / 100);
         }
+        // đuôi khỉ
+        if (this.player.itemTime != null && this.player.itemTime.isUseDK) {
+            this.dame += ((long) this.dame * 20 / 100);
+        }
         //hợp thể
         if (this.player.fusion.typeFusion != 0) {
             this.dame += this.player.pet.nPoint.dame;

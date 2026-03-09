@@ -392,6 +392,7 @@ public class UseItem {
                         case 1235:
                         case 752: // bánh tét
                         case 753: //bánh chưng
+                        case 1045: //Đuôi khỉ
                             useItemTime(pl, item);
                             break;
                         case 570:
@@ -1650,6 +1651,14 @@ public class UseItem {
             case 753: //bánh chưng
                 pl.itemTime.lastTimeBanhChung = System.currentTimeMillis();
                 pl.itemTime.isUseBanhChung= true;
+                break;
+            case 1045: //Đuôi Khỉ
+                if (pl.itemTime.isUseDK == true) {
+                    Service.getInstance().sendThongBao(pl, "Bạn đang sử dụng đuôi khỉ");
+                    return;
+                }
+                pl.itemTime.lastTimeUseDK = System.currentTimeMillis();
+                pl.itemTime.isUseDK = true;
                 break;
         }
         Service.gI().point(pl);

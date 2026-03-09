@@ -793,6 +793,7 @@ public class PlayerDAO {
                 dataArray.add((player.itemTime.isX5EXP ? (ItemTime.TIME_MAY_DO - (System.currentTimeMillis() - player.itemTime.lastX5EXP)) : 0));
                 dataArray.add((player.itemTime.isX7EXP ? (ItemTime.TIME_MAY_DO - (System.currentTimeMillis() - player.itemTime.lastX7EXP)) : 0));
                 dataArray.add((player.itemTime.isdaiviet ? (ItemTime.TIME_MAY_DO - (System.currentTimeMillis() - player.itemTime.lastdaiviet)) : 0));
+                dataArray.add((player.itemTime.isUseDK ? (ItemTime.TIME_DUOI_KHI - (System.currentTimeMillis() - player.itemTime.lastTimeUseDK)) : 0));
 
                 String Binh_can = dataArray.toJSONString();
                 dataArray.clear();
