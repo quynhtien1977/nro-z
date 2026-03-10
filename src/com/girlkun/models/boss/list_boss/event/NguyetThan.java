@@ -72,21 +72,36 @@ public class NguyetThan extends Boss {
 
     @Override
     public Player getPlayerAttack() {
-        java.util.List<Player> plNotVoHinh = new java.util.ArrayList<>();
-        for (Player pl : this.zone.getNotBosses()) {
-            if (pl != null && (pl.effectSkin == null || !pl.effectSkin.isVoHinh) && pl.cFlag != 0 && pl.cFlag != 8 && pl.cFlag != this.cFlag) {
-                plNotVoHinh.add(pl);
+        if (this.playerTarger != null && (this.playerTarger.isDie() || !this.zone.equals(this.playerTarger.zone))) {
+            this.playerTarger = null;
+        }
+        if (this.playerTarger != null && this.playerTarger.effectSkin != null && this.playerTarger.effectSkin.isVoHinh) {
+            this.playerTarger = null;
+        }
+        if (this.playerTarger == null || Util.canDoWithTime(this.lastTimeTargetPlayer, this.timeTargetPlayer)) {
+            Player newTarget = null;
+            int count = 0;
+            for (Player pl : this.zone.getNotBosses()) {
+                if (pl != null && !pl.isDie() && (pl.effectSkin == null || !pl.effectSkin.isVoHinh) && pl.cFlag != 0 && pl.cFlag != 8 && pl.cFlag != this.cFlag) {
+                    count++;
+                    if (Util.nextInt(count) == 0) {
+                        newTarget = pl;
+                    }
+                }
             }
-        }
-        for (Player pl : this.zone.getBosses()) {
-            if (pl != null && !pl.equals(this) && pl.cFlag == 2) {
-                plNotVoHinh.add(pl);
+            for (Player pl : this.zone.getBosses()) {
+                if (pl != null && !pl.equals(this) && !pl.isDie() && pl.cFlag == 2) {
+                    count++;
+                    if (Util.nextInt(count) == 0) {
+                        newTarget = pl;
+                    }
+                }
             }
+            this.playerTarger = newTarget;
+            this.lastTimeTargetPlayer = System.currentTimeMillis();
+            this.timeTargetPlayer = Util.nextInt(5000, 7000);
         }
-        if (!plNotVoHinh.isEmpty()) {
-            return plNotVoHinh.get(Util.nextInt(0, plNotVoHinh.size() - 1));
-        }
-        return null;
+        return this.playerTarger;
     }
 
     @Override
