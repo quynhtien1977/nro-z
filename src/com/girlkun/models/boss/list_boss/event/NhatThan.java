@@ -22,7 +22,7 @@ public class NhatThan extends Boss {
     @Override
     public void reward(Player plKill) {
         if (this.zone != null) {
-            ItemMap it = new ItemMap(this.zone, 2124, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
+            ItemMap it = new ItemMap(this.zone, 473, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
                     this.location.y - 24), plKill.id);
             it.options.add(new Item.ItemOption(77, Util.nextInt(20, 25)));
             it.options.add(new Item.ItemOption(103, Util.nextInt(20, 25)));
@@ -61,6 +61,46 @@ public class NhatThan extends Boss {
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public void joinMap() {
+        super.joinMap();
+        Service.gI().changeFlag(this, 2);
+    }
+
+    @Override
+    public Player getPlayerAttack() {
+        if (this.playerTarger != null && (this.playerTarger.isDie() || !this.zone.equals(this.playerTarger.zone))) {
+            this.playerTarger = null;
+        }
+        if (this.playerTarger != null && this.playerTarger.effectSkin != null && this.playerTarger.effectSkin.isVoHinh) {
+            this.playerTarger = null;
+        }
+        if (this.playerTarger == null || Util.canDoWithTime(this.lastTimeTargetPlayer, this.timeTargetPlayer)) {
+            Player newTarget = null;
+            int count = 0;
+            for (Player pl : this.zone.getNotBosses()) {
+                if (pl != null && !pl.isDie() && (pl.effectSkin == null || !pl.effectSkin.isVoHinh) && pl.cFlag != 0 && pl.cFlag != 8 && pl.cFlag != this.cFlag) {
+                    count++;
+                    if (Util.nextInt(count) == 0) {
+                        newTarget = pl;
+                    }
+                }
+            }
+            for (Player pl : this.zone.getBosses()) {
+                if (pl != null && !pl.equals(this) && !pl.isDie() && pl.cFlag == 1) {
+                    count++;
+                    if (Util.nextInt(count) == 0) {
+                        newTarget = pl;
+                    }
+                }
+            }
+            this.playerTarger = newTarget;
+            this.lastTimeTargetPlayer = System.currentTimeMillis();
+            this.timeTargetPlayer = Util.nextInt(5000, 7000);
+        }
+        return this.playerTarger;
     }
 
     @Override

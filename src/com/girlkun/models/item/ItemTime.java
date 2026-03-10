@@ -18,7 +18,7 @@ public class ItemTime {
     public static final int TIME_MAY_DO = 1800000;
     public static final int TIME_MAY_DO2 = 1800000;
     public static final int TIME_EAT_MEAL = 600000;
-    public static final int TIME_DUOI_KHI = 300000;
+    public static final int TIME_DUOI_KHI = 1800000;
     private Player player;
 
     public boolean isUseBoHuyet;
@@ -41,7 +41,7 @@ public class ItemTime {
     public long lastTimeGiapXen;
     public long lastTimeCuongNo;
     public long lastTimeAnDanh;
-    public long lastdaiviet1;
+
     public long lastTimeBoHuyet2;
     public long lastTimeBoKhi2;
     public long lastTimeGiapXen2;
@@ -56,6 +56,9 @@ public class ItemTime {
     public long lastTimeUseMayDo;//lastime de chung 1 cai neu time = nhau
     public boolean isUseMayDo2;
     public long lastTimeUseMayDo2;
+
+    public boolean isUseDK;
+    public long lastTimeUseDK;
 
     public boolean isOpenPower;
     public long lastTimeOpenPower;
@@ -143,7 +146,7 @@ public class ItemTime {
             }
         }
         if (isdaiviet) {
-            if (Util.canDoWithTime(lastdaiviet1, TIME_MAY_DO)) {
+            if (Util.canDoWithTime(lastdaiviet, TIME_MAY_DO)) {
                 isdaiviet = false;
             }
         }
@@ -156,6 +159,13 @@ public class ItemTime {
         if (isUseAnDanh) {
             if (Util.canDoWithTime(lastTimeAnDanh, TIME_ITEM)) {
                 isUseAnDanh = false;
+            }
+        }
+        
+        if (isUseDK) {
+            if (Util.canDoWithTime(lastTimeUseDK, TIME_DUOI_KHI)) {
+                isUseDK = false;
+                Service.gI().point(player);
             }
         }
 

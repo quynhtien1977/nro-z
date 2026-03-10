@@ -560,16 +560,27 @@ public class GodGK {
                             int timex3 = Integer.parseInt(String.valueOf(dataArray.get(1)));
                             int timex5 = Integer.parseInt(String.valueOf(dataArray.get(2)));
                             int timex7 = Integer.parseInt(String.valueOf(dataArray.get(3)));
+                            int timexdv = 0;
+                            if (dataArray.size() > 4) {
+                                timexdv = Integer.parseInt(String.valueOf(dataArray.get(4)));
+                            }
+                            int timeUseDK = 0;
+                            if (dataArray.size() > 5) {
+                                timeUseDK = Integer.parseInt(String.valueOf(dataArray.get(5)));
+                            }
 
                             player.itemTime.lastX2EXP = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timex2);
                             player.itemTime.lastX3EXP = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timex3);
                             player.itemTime.lastX5EXP = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timex5);
                             player.itemTime.lastX7EXP = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timex7);
-                            player.itemTime.lastdaiviet = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timex7);
+                            player.itemTime.lastdaiviet = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timexdv);
+                            player.itemTime.lastTimeUseDK = System.currentTimeMillis() - (ItemTime.TIME_DUOI_KHI - timeUseDK);
                             player.itemTime.isX2EXP = timex2 != 0;
                             player.itemTime.isX3EXP = timex3 != 0;
                             player.itemTime.isX5EXP = timex5 != 0;
                             player.itemTime.isX7EXP = timex7 != 0;
+                            player.itemTime.isdaiviet = timexdv != 0;
+                            player.itemTime.isUseDK = timeUseDK != 0;
                             dataArray.clear();
                             // data thanh tuu
 //                            for (ArchivementTemplate a : Manager.Archivement_TEMPLATES) {
@@ -1464,18 +1475,27 @@ public class GodGK {
                 int timex3 = Integer.parseInt(String.valueOf(dataArray.get(1)));
                 int timex5 = Integer.parseInt(String.valueOf(dataArray.get(2)));
                 int timex7 = Integer.parseInt(String.valueOf(dataArray.get(3)));
+                int timexdv = 0;
+                if (dataArray.size() > 4) {
+                    timexdv = Integer.parseInt(String.valueOf(dataArray.get(4)));
+                }
+                int timeUseDK = 0;
+                if (dataArray.size() > 5) {
+                    timeUseDK = Integer.parseInt(String.valueOf(dataArray.get(5)));
+                }
                 
-
                 player.itemTime.lastX2EXP = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timex2);
                 player.itemTime.lastX3EXP = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timex3);
                 player.itemTime.lastX5EXP = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timex5);
-               // player.itemTime.lastX7EXP = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timex7);
-                player.itemTime.lastdaiviet = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timex7);
+                player.itemTime.lastX7EXP = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timex7);
+                player.itemTime.lastdaiviet = System.currentTimeMillis() - (ItemTime.TIME_MAY_DO - timexdv);
+                player.itemTime.lastTimeUseDK = System.currentTimeMillis() - (ItemTime.TIME_DUOI_KHI - timeUseDK);
                 player.itemTime.isX2EXP = timex2 != 0;
                 player.itemTime.isX3EXP = timex3 != 0;
                 player.itemTime.isX5EXP = timex5 != 0;
                 player.itemTime.isX7EXP = timex7 != 0;
-                player.itemTime.isdaiviet = timex7 != 0;
+                player.itemTime.isdaiviet = timexdv != 0;
+                player.itemTime.isUseDK = timeUseDK != 0;
                 dataArray.clear();
                 //data nhiệm vụ
                 dataArray = (JSONArray) jv.parse(rs.getString("data_task"));

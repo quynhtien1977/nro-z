@@ -59,6 +59,9 @@ public class ItemTimeService {
         if (player.itemTime.isUseGiapXen) {
             sendItemTime(player, 2757, (int) ((TIME_ITEM - (System.currentTimeMillis() - player.itemTime.lastTimeGiapXen)) / 1000));
         }
+        if (player.itemTime.isUseDK) {
+            sendItemTime(player, 5072, (int) ((TIME_DUOI_KHI - (System.currentTimeMillis() - player.itemTime.lastTimeUseDK)) / 1000));
+        }
         if (player.itemTime.isdaiviet) {
             sendItemTime(player, 5829, (int) ((TIME_MAY_DO - (System.currentTimeMillis() - player.itemTime.lastdaiviet)) / 1000));
         }        

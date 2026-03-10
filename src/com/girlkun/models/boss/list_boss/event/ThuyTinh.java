@@ -84,10 +84,47 @@ public class ThuyTinh extends Boss {
     }
 
     @Override
-    public void active() {
-        if (this.typePk == com.girlkun.consts.ConstPlayer.NON_PK) {
-            this.changeToTypePK();
+    public void joinMap() {
+        super.joinMap();
+        Service.gI().changeFlag(this, 2);
+    }
+
+    @Override
+    public Player getPlayerAttack() {
+        if (this.playerTarger != null && (this.playerTarger.isDie() || !this.zone.equals(this.playerTarger.zone))) {
+            this.playerTarger = null;
         }
+        if (this.playerTarger != null && this.playerTarger.effectSkin != null && this.playerTarger.effectSkin.isVoHinh) {
+            this.playerTarger = null;
+        }
+        if (this.playerTarger == null || Util.canDoWithTime(this.lastTimeTargetPlayer, this.timeTargetPlayer)) {
+            Player newTarget = null;
+            int count = 0;
+            for (Player pl : this.zone.getNotBosses()) {
+                if (pl != null && !pl.isDie() && (pl.effectSkin == null || !pl.effectSkin.isVoHinh) && pl.cFlag != 0 && pl.cFlag != 8 && pl.cFlag != this.cFlag) {
+                    count++;
+                    if (Util.nextInt(count) == 0) {
+                        newTarget = pl;
+                    }
+                }
+            }
+            for (Player pl : this.zone.getBosses()) {
+                if (pl != null && !pl.equals(this) && !pl.isDie() && pl.cFlag == 1) {
+                    count++;
+                    if (Util.nextInt(count) == 0) {
+                        newTarget = pl;
+                    }
+                }
+            }
+            this.playerTarger = newTarget;
+            this.lastTimeTargetPlayer = System.currentTimeMillis();
+            this.timeTargetPlayer = Util.nextInt(5000, 7000);
+        }
+        return this.playerTarger;
+    }
+
+    @Override
+    public void active() {
         this.attack();
     }
 

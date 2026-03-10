@@ -177,10 +177,8 @@ public class BossManager implements Runnable {
             // Trung Thu
             this.createBoss(BossID.KHIDOT);
             this.createBoss(BossID.NGUYETTHAN);
-            this.createBoss(BossID.NHATTHAN);
             // Hung Vuong
             this.createBoss(BossID.THUY_TINH);
-            this.createBoss(BossID.SON_TINH);
 
 
         } catch (Exception e) {
