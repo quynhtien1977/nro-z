@@ -1653,7 +1653,7 @@ public class UseItem {
                 pl.itemTime.isUseBanhChung= true;
                 break;
             case 1045: //Đuôi Khỉ
-                if (pl.itemTime.isUseDK == true) {
+                if (pl.itemTime.isUseDK) {
                     Service.getInstance().sendThongBao(pl, "Bạn đang sử dụng đuôi khỉ");
                     return;
                 }

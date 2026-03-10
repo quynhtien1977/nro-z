@@ -563,7 +563,17 @@ if ((this.id >= -22 && this.id <= -20) || (this.id >= -9 && this.id <= -12)) {
     public void moveTo(int x, int y) {
         byte dir = (byte) (this.location.x - x < 0 ? 1 : -1);
         byte move = (byte) Util.nextInt(40, 60);
-        PlayerService.gI().playerMove(this, this.location.x + (dir == 1 ? move : -move), y + (Util.isTrue(3, 10) ? -50 : 0));
+        int newX = this.location.x + (dir == 1 ? move : -move);
+        int newY = y + (Util.isTrue(3, 10) ? -50 : 0);
+        if (this.zone != null && this.zone.map != null) {
+            int groundY = this.zone.map.yPhysicInTop(newX, newY);
+            if (groundY - newY > 100) {
+                newY = groundY - 50;
+            } else if (newY > groundY) {
+                newY = groundY;
+            }
+        }
+        PlayerService.gI().playerMove(this, newX, newY);
     }
 
     public void chat(String text) {

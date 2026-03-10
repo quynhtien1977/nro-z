@@ -41,7 +41,7 @@ public class ItemTime {
     public long lastTimeGiapXen;
     public long lastTimeCuongNo;
     public long lastTimeAnDanh;
-    public long lastdaiviet1;
+
     public long lastTimeBoHuyet2;
     public long lastTimeBoKhi2;
     public long lastTimeGiapXen2;
@@ -146,7 +146,7 @@ public class ItemTime {
             }
         }
         if (isdaiviet) {
-            if (Util.canDoWithTime(lastdaiviet1, TIME_MAY_DO)) {
+            if (Util.canDoWithTime(lastdaiviet, TIME_MAY_DO)) {
                 isdaiviet = false;
             }
         }
