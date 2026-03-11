@@ -33,3 +33,6 @@ Thumbs.db
 
 # Test
 /test/
+
+# Docs for requirement
+docs/

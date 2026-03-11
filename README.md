@@ -76,3 +76,10 @@ java -server -jar -Dfile.encoding=UTF-8 -Xms1000M -Xmx1000M dist/Kaizv1.2.jar
 ## License
 
 Private project. All rights reserved.
+
+### Set ip
+
+- Đổi ip ở 3 file:
+    - girlkun.properties
+    - src\com\girlkun\data\DataGame.java
+    - DataControlGame\DataGame.java
