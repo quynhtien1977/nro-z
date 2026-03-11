@@ -566,6 +566,10 @@ if ((this.id >= -22 && this.id <= -20) || (this.id >= -9 && this.id <= -12)) {
         int newX = this.location.x + (dir == 1 ? move : -move);
         int newY = y + (Util.isTrue(3, 10) ? -50 : 0);
         if (this.zone != null && this.zone.map != null) {
+            // Tránh boss chạy ra khỏi map
+            int limitX = 24;
+            newX = Math.max(limitX, Math.min(this.zone.map.mapWidth - limitX, newX));
+
             int groundY = this.zone.map.yPhysicInTop(newX, newY);
             if (groundY - newY > 100) {
                 newY = groundY - 50;
