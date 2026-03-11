@@ -9,6 +9,7 @@ import com.girlkun.services.EffectSkillService;
 import com.girlkun.services.Service;
 import com.girlkun.services.SkillService;
 import com.girlkun.utils.Util;
+import com.girlkun.models.skill.Skill;
 
 public class NguyetThan extends Boss {
 
@@ -50,7 +51,13 @@ public class NguyetThan extends Boss {
                 }
                 damage = 1;
             }
-            if (!piercing && damage > 1000000) {
+            if (!piercing && plAtt.playerSkill.skillSelect.template.id != Skill.TU_SAT 
+                    && plAtt.playerSkill.skillSelect.template.id != Skill.QUA_CAU_KENH_KHI 
+                    && plAtt.playerSkill.skillSelect.template.id != Skill.MAKANKOSAPPO 
+                    && plAtt.playerSkill.skillSelect.template.id != Skill.LIEN_HOAN_CHUONG
+                    && plAtt.playerSkill.skillSelect.template.id != Skill.SUPER_KAME
+                    && plAtt.playerSkill.skillSelect.template.id != Skill.MA_PHONG_BA   
+                    && damage > 1000000) {
                 damage = Util.nextInt(900000, 1000000);
             }
             this.nPoint.subHP(damage);

@@ -171,14 +171,20 @@ public class BossManager implements Runnable {
 
             // ========== EVENT BOSSES ==========
             // Halloween
-            this.createBoss(BossID.BIMA);
-            this.createBoss(BossID.DOI);
-            this.createBoss(BossID.MATROI);
+            for (int i = 0; i < 3; i++) {
+                this.createBoss(BossID.BIMA);
+                this.createBoss(BossID.DOI);
+                this.createBoss(BossID.MATROI);
+            }
             // Trung Thu
-            this.createBoss(BossID.KHIDOT);
-            this.createBoss(BossID.NGUYETTHAN);
+            for (int i = 0; i < 3; i++) {
+                this.createBoss(BossID.KHIDOT);
+                this.createBoss(BossID.NGUYETTHAN);
+            }
             // Hung Vuong
-            this.createBoss(BossID.THUY_TINH);
+            for (int i = 0; i < 3; i++) {
+                this.createBoss(BossID.THUY_TINH);
+            }
 
 
         } catch (Exception e) {
