@@ -22,7 +22,7 @@ public class DataGame {
     public static byte vsItem = 81;
     public static int vsRes = 752011;
 
-    public static String LINK_IP_PORT = "Nro Green 01:192.168.1.11:14445:0,0,0";
+    public static String LINK_IP_PORT = "Nro Zairou 01:127.0.0.1:14445:0,0,0";
     private static final String MOUNT_NUM = "733:1,734:2,735:3,743:4,744:5,746:6,795:7,849:8,897:9,920:10,1092:11,1141:15";
     public static final Map MAP_MOUNT_NUM = new HashMap();
 

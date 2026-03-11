@@ -1,7 +1,7 @@
 package com.girlkun.models.boss.list_boss.event;
 
-import com.girlkun.models.boss.BossID;
 import com.girlkun.models.boss.*;
+import com.girlkun.models.skill.Skill;
 import com.girlkun.consts.ConstPlayer;
 import com.girlkun.models.map.ItemMap;
 import com.girlkun.models.player.Player;
@@ -45,8 +45,15 @@ public class Doi extends Boss {
                 }
                 damage = 1;
             }
-            if (damage > this.nPoint.hpMax / 20) {
-                damage = this.nPoint.hpMax / 20;
+            if (plAtt != null && plAtt.playerSkill.skillSelect != null
+                    && plAtt.playerSkill.skillSelect.template.id != Skill.TU_SAT
+                    && plAtt.playerSkill.skillSelect.template.id != Skill.MA_PHONG_BA
+                    && plAtt.playerSkill.skillSelect.template.id != Skill.LIEN_HOAN_CHUONG
+                    && plAtt.playerSkill.skillSelect.template.id != Skill.SUPER_KAME
+                    && plAtt.playerSkill.skillSelect.template.id != Skill.KAIOKEN) {
+                if (damage > this.nPoint.hpMax / 20) {
+                    damage = this.nPoint.hpMax / 20;
+                }
             }
             this.nPoint.subHP(damage);
             if (isDie()) {

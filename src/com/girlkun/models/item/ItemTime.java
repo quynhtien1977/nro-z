@@ -64,7 +64,6 @@ public class ItemTime {
     public long lastTimeOpenPower;
 
     public boolean isUseTDLT;
-//        public static final int TIME_DUOI_KHI = 300000;
     public long lastTimeUseTDLT;
     public int timeTDLT;
 

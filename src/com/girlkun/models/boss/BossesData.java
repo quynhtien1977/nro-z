@@ -2475,9 +2475,9 @@ public class BossesData {
             "Bí ma", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{760, 761, 762, -1, -1, -1}, //outfit
-            500000, //dame
-            new int[]{50000000}, //hp
-            new int[]{0, 1, 2, 3, 4, 5, 6, 7}, //map join - spawn random map
+            10000, //dame
+            new int[]{5000000}, //hp
+            new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36}, //map join - spawn random map
             new int[][]{
                     {Skill.KAMEJOKO, 7, Util.nextInt(5000, 10000)},
                     {Skill.DRAGON, 7, Util.nextInt(5000, 10000)},
@@ -2496,9 +2496,9 @@ public class BossesData {
             "Dơi", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{654, 655, 656, -1, -1, -1}, //outfit
-            400000, //dame
-            new int[]{30000000}, //hp
-            new int[]{0, 1, 2, 3, 4, 5, 6, 7}, //map join
+            40000, //dame
+            new int[]{3000000}, //hp
+            new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36}, //map join
             new int[][]{
                     {Skill.DRAGON, 7, Util.nextInt(5000, 10000)},
                     {Skill.LIEN_HOAN, 7, Util.nextInt(5000, 10000)}
@@ -2514,9 +2514,9 @@ public class BossesData {
             "Ma trơi", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{651, 652, 653, -1, -1, -1}, //outfit
-            300000, //dame
-            new int[]{20000000}, //hp
-            new int[]{0, 1, 2, 3, 4, 5, 6, 7}, //map join
+            30000, //dame
+            new int[]{2000000}, //hp
+            new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36}, //map join
             new int[][]{
                     {Skill.MASENKO, 7, Util.nextInt(5000, 10000)},
                     {Skill.KAMEJOKO, 7, Util.nextInt(5000, 10000)}

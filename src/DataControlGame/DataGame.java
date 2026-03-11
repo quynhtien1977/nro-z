@@ -10,7 +10,7 @@ package DataControlGame;
  * @author Administrator
  */
 public class DataGame {
-    public static String IPServerGame = "Nro Green 01:192.168.1.11:14445:0,0,0";
+    public static String IPServerGame = "Nro Zair0u 01:127.0.0.1:14445:0,0,0";
     public static boolean IsBaoTri = false;
     public final static int TiLeRoiDoThanBoss = 2;
     public final static int TiLeNap = 1;

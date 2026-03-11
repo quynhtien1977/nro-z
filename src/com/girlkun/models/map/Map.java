@@ -314,19 +314,29 @@ public class Map implements Runnable {
     public int yPhysicInTop(int x, int y) {
         try {
             int rX = (int) x / SIZE;
-            int rY = 0;
-            if (isTileTop(tileMap[y / SIZE][rX])) {
-                return y;
-            }
-            for (int i = y / SIZE; i < tileMap.length; i++) {
+            if (rX < 0) rX = 0;
+            if (tileMap.length > 0 && rX >= tileMap[0].length) rX = tileMap[0].length - 1;
+            
+            int rY = y / SIZE;
+            if (rY < 0) rY = 0;
+            if (rY >= tileMap.length) rY = tileMap.length - 1;
+
+            // Search downwards first
+            for (int i = rY; i < tileMap.length; i++) {
                 if (isTileTop(tileMap[i][rX])) {
-                    rY = i * SIZE;
-                    break;
+                    return i * SIZE;
                 }
             }
-            return rY;
-        } catch (Exception e) {
             
+            // If not found down, search upwards
+            for (int i = rY; i >= 0; i--) {
+                if (isTileTop(tileMap[i][rX])) {
+                    return i * SIZE;
+                }
+            }
+            
+            return y; 
+        } catch (Exception e) {
             return y;
         }
     }

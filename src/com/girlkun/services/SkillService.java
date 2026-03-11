@@ -865,7 +865,7 @@ public class SkillService {
                     //nổ
                     player.playerSkill.prepareTuSat = !player.playerSkill.prepareTuSat;
                     // int rangeBom = SkillUtil.getRangeBom(player.playerSkill.skillSelect.point);
-                    int dame = (int) player.nPoint.hpMax;
+                    int dame = (int) (player.nPoint.hpMax / 2);
                     for (Mob mob : player.zone.mobs) {
                         mob.injured(player, dame, true);
                     //    if (Util.getDistance(player, mob) <= rangeBom) { //khoảng cách có tác dụng bom
