@@ -843,6 +843,10 @@ public class PlayerDAO {
                         Binh_can,
                         player.id);
              //   Logger.log(Logger.CYAN," THÔNG BÁO : " + player.name + " lưu xong! " + (System.currentTimeMillis() - st) + "\n");
+             
+             // Save Super Rank
+             SuperRankDAO.updateSuperRank(player);
+             
             } catch (Exception e) {
                 System.err.print("\nError at 47\n");
                 e.printStackTrace();

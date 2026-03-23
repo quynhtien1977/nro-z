@@ -43,7 +43,7 @@ public class ConstNpc {
                         + "1k VND = 1k coin ; 1k coin = 3 thỏi vàng";
         public static final String NPC_DHVT23 = "Đại hội quy tụ nhiều cao thủ như là Jacky CHun, Thiên Xin Hăng, Tàu Bảy Bảy... Phần thường là 1 rương gỗ chưa nhiều vật phẩm giá trị. Khi hạ được 1 đối thủ, phần thưởng sẽ nâng lên 1 cấp. Rương càng cao cấp, vật phaarm trong đó càng giá trị hơn.\n"
                         + "Mỗi ngày bạn chỉ được nhận 1 phần thưởng. Bạn hãy cố gắng hết sức mình để nhận phần thưởng xứng đáng nhất nhé..\n";
-
+        public static final String THONG_TIN_SIEU_HANG = "Giải đấu thể hiện đẳng cấp thực sự\nCác trận đấu diễn ra liên tục bất kể ngày đêm\nBạn hãy tham gia thi đấu để nâng hạng\nvà nhận giải thưởng khủng nhé\n";
         // npcid
         public static final byte ONG_GOHAN = 0;
         public static final byte ONG_PARAGUS = 1;

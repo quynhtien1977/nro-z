@@ -89,6 +89,15 @@ public class Player {
     public int pointPvp;
     public int SuperAura;
     public int PointBoss;
+    
+    // SUPER RANK
+    public int superRank;
+    public int superRankTicket;
+    public long lastTimePKSuperRank;
+    public int superRankWins;
+    public int superRankLoses;
+    public List<String> superRankHistory = new ArrayList<>();
+
     public byte maxTime = 30;
     public byte type = 0;
     public int ResetSkill = 0;
@@ -108,6 +117,7 @@ public class Player {
     public SetClothes setClothes;
     public EffectSkill effectSkill;
     public MabuEgg mabuEgg;
+    public boolean isPKDHVT;
     public BillEgg billEgg;
     public TaskPlayer playerTask;
     public ItemTime itemTime;
@@ -183,6 +193,17 @@ public class Player {
     public boolean haveDuongTang = false;
     public int mapCongDuc;
     public List<Archivement> archivementList = new ArrayList<>();
+
+    public void recordSuperRankHistory(String record, long time) {
+        if (this.superRankHistory == null) {
+            this.superRankHistory = new ArrayList<>();
+        }
+        String entry = record + " (" + com.girlkun.utils.TimeUtil.formatTime(new java.util.Date(time), "dd/MM HH:mm") + ")";
+        this.superRankHistory.add(0, entry);
+        if (this.superRankHistory.size() > 10) {
+            this.superRankHistory.remove(this.superRankHistory.size() - 1);
+        }
+    }
 
     public Player() {
         lastTimeUseOption = System.currentTimeMillis();

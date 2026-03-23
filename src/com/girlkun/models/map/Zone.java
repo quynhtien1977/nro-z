@@ -53,6 +53,12 @@ public class Zone {
     public boolean finishBlackBallWar;
     public boolean finishMapMaBu;
 
+    public boolean isCompeting;
+    public int rank1 = -1;
+    public int rank2 = -1;
+    public String rankName1;
+    public String rankName2;
+
     public long lastTimeSonTinhThuyTinhDie;
     public static final long TIME_SON_TINH_THUY_TINH_EVENT = 600000;
 

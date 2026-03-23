@@ -299,17 +299,17 @@ public class Controller implements IMessageHandler {
                 case -101:
                     login2(_session, _msg);
                     break;
-//                case -118:
-//                    if (player != null) {
-//                       int id = _msg.reader().readInt();
-//                        for (Boss bosse : BossManager.gI().getBosses()) {
-//                            if (bosse != null && bosse.id == id && !bosse.isDie()) {
-//                 //               ChangeMapService.gI().changeMapInYard(player, bosse.zone, -1);
-//                                break;
-//                            }
-//                        }
-//                    }
-//                    break;
+                case -118:
+                    if (player != null) {
+                        try {
+                            int _id = _msg.reader().readInt();
+                            int menuType = player.iDMark.getIndexMenu();
+                            if (menuType == 0 || menuType == 1 || menuType == 2) {
+                                com.girlkun.models.matches.pvp.SuperRankService.gI().competing(player, _id);
+                            }
+                        } catch (Exception e) {}
+                    }
+                    break;
                 case -103:
                     if (player != null) {
                         byte act = _msg.reader().readByte();

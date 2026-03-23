@@ -1457,16 +1457,54 @@ public class NpcFactory {
             @Override
             public void openBaseMenu(Player player) {
                 if (canOpenNpc(player)) {
-                    createOtherMenu(player, ConstNpc.BASE_MENU,
-                            "Xin chào cậu muốn ta giúp gì",
-                            "giải đấu bang hội", "Cửa Hàng");
+                    if (this.mapId == 113) {
+                        if (com.girlkun.models.matches.pvp.SuperRankManager.gI().awaiting(player)) {
+                            int ordinal = com.girlkun.models.matches.pvp.SuperRankManager.gI().ordinal(player.id);
+                            createOtherMenu(player, ConstNpc.BASE_MENU, "Vui lòng chờ, số thứ tự của bạn là " + ordinal, "OK", "Về\nĐại Hội\nVõ Thuật");
+                        } else {
+                            String ticketMsg = player.superRankTicket > 0 ? "Miễn phí\nCòn " + player.superRankTicket + " vé" : "Thi đấu";
+                            createOtherMenu(player, ConstNpc.BASE_MENU,
+                                    "Đại hội võ thuật Siêu Hạng\ndiễn ra 24/7 kể cả ngày lễ và chủ nhật\nHãy thi đấu ngay để khẳng định đẳng cấp của mình nhé",
+                                    "Top 100\nCao Thủ", "Hướng\ndẫn\nthêm", ticketMsg, "Ưu tiên\nđấu ngay", "Về\nĐại Hội\nVõ Thuật");
+                        }
+                    } else if (this.mapId == 13) {
+                        createOtherMenu(player, ConstNpc.BASE_MENU,
+                                "Xin chào cậu muốn ta giúp gì",
+                                "giải đấu bang hội", "Cửa Hàng");
+                    }
                 }
             }
 
             @Override
             public void confirmMenu(Player player, int select) {
                 if (canOpenNpc(player)) {
-                    if (this.mapId == 13) {
+                    if (this.mapId == 113) {
+                        if (player.iDMark.isBaseMenu()) {
+                            if (com.girlkun.models.matches.pvp.SuperRankManager.gI().awaiting(player)) {
+                                if (select == 1) {
+                                    com.girlkun.services.func.ChangeMapService.gI().changeMapNonSpaceship(player, 52, player.location.x, 336);
+                                }
+                                return;
+                            }
+                            switch (select) {
+                                case 0:
+                                    com.girlkun.models.matches.pvp.SuperRankService.gI().topList(player, 0);
+                                    break;
+                                case 1:
+                                    com.girlkun.services.NpcService.gI().createTutorial(player, tempId, ConstNpc.THONG_TIN_SIEU_HANG);
+                                    break;
+                                case 2:
+                                    com.girlkun.models.matches.pvp.SuperRankService.gI().topList(player, 1);
+                                    break;
+                                case 3:
+                                    com.girlkun.models.matches.pvp.SuperRankService.gI().topList(player, 2);
+                                    break;
+                                case 4:
+                                    com.girlkun.services.func.ChangeMapService.gI().changeMapNonSpaceship(player, 52, player.location.x, 336);
+                                    break;
+                            }
+                        }
+                    } else if (this.mapId == 13) {
                         if (player.iDMark.isBaseMenu()) {
                             switch (select) {
                                 case 0:
@@ -4842,7 +4880,7 @@ public class NpcFactory {
                     if (this.mapId == 52) {
                         this.createOtherMenu(pl, ConstNpc.BASE_MENU,
                                 "Đại hội võ thuật lần thứ 23\nDiễn ra bất kể ngày đêm,ngày nghỉ ngày lễ\nPhần thưởng vô cùng quý giá\nNhanh chóng tham gia nào",
-                                "Đại Hội\nVõ Thuật\nLần thứ\n23", "Từ chối");
+                                "Giải\nSiêu Hạng", "Đại Hội\nVõ Thuật\nLần thứ\n23", "Từ chối");
                     } else if (this.mapId == 129) {
                         // int goldchallenge = pl.goldChallenge;
                         if (pl.levelWoodChest == 0) {
@@ -4867,6 +4905,9 @@ public class NpcFactory {
                     if (this.mapId == 52) {
                         switch (select) {
                             case 0:
+                                ChangeMapService.gI().changeMapNonSpaceship(player, 113, player.location.x, 360);
+                                break;
+                            case 1:
                                 ChangeMapService.gI().changeMapNonSpaceship(player, 129, player.location.x, 360);
                                 break;
                         }
