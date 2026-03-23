@@ -162,13 +162,13 @@ public class SuperRankService {
     public String textReward(int rank) {
         String text = "";
         if (rank == 1) {
-            text = "+100 ngọc/ ngày";
+            text = "+1000 hồng ngọc/ ngày";
         } else if (rank >= 2 && rank <= 10) {
-            text = "+20 ngọc/ ngày";
+            text = "+200 hồng ngọc/ ngày";
         } else if (rank >= 11 && rank <= 100) {
-            text = "+5 ngọc/ ngày";
+            text = "+50 hồng ngọc/ ngày";
         } else if (rank >= 101 && rank <= 1000) {
-            text = "+1 ngọc/ ngày";
+            text = "+10 hồng ngọc/ ngày";
         }
         return text;
     }

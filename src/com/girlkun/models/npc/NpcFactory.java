@@ -1465,7 +1465,7 @@ public class NpcFactory {
                             String ticketMsg = player.superRankTicket > 0 ? "Miễn phí\nCòn " + player.superRankTicket + " vé" : "Thi đấu";
                             createOtherMenu(player, ConstNpc.BASE_MENU,
                                     "Đại hội võ thuật Siêu Hạng\ndiễn ra 24/7 kể cả ngày lễ và chủ nhật\nHãy thi đấu ngay để khẳng định đẳng cấp của mình nhé",
-                                    "Top 100\nCao Thủ", "Hướng\ndẫn\nthêm", ticketMsg, "Ưu tiên\nđấu ngay", "Về\nĐại Hội\nVõ Thuật");
+                                    "Nhận\nthưởng", "Top 100\nCao Thủ", "Hướng\ndẫn\nthêm", ticketMsg, "Ưu tiên\nđấu ngay", "Về\nĐại Hội\nVõ Thuật");
                         }
                     } else if (this.mapId == 13) {
                         createOtherMenu(player, ConstNpc.BASE_MENU,
@@ -1488,18 +1488,39 @@ public class NpcFactory {
                             }
                             switch (select) {
                                 case 0:
-                                    com.girlkun.models.matches.pvp.SuperRankService.gI().topList(player, 0);
+                                    if (com.girlkun.utils.Util.canDoWithTime(player.lastTimeRewardSuperRank, 86400000)) {
+                                        int ruby = 0;
+                                        if (player.superRank == 1) ruby = 1000;
+                                        else if (player.superRank >= 2 && player.superRank <= 10) ruby = 200;
+                                        else if (player.superRank >= 11 && player.superRank <= 100) ruby = 50;
+                                        else if (player.superRank >= 101 && player.superRank <= 1000) ruby = 10;
+
+                                        if (ruby > 0) {
+                                            player.inventory.ruby += ruby;
+                                            player.lastTimeRewardSuperRank = System.currentTimeMillis();
+                                            com.girlkun.jdbc.daos.SuperRankDAO.updateSuperRank(player);
+                                            Service.gI().sendMoney(player);
+                                            Service.gI().sendThongBao(player, "Bạn nhận được " + ruby + " hồng ngọc phần thưởng xếp hạng " + player.superRank);
+                                        } else {
+                                            Service.gI().sendThongBao(player, "Hạng của bạn chưa đủ để nhận thưởng!");
+                                        }
+                                    } else {
+                                        Service.gI().sendThongBao(player, "Bạn đã nhận phần thưởng hôm nay rồi, hãy quay lại vào ngày mai!");
+                                    }
                                     break;
                                 case 1:
-                                    com.girlkun.services.NpcService.gI().createTutorial(player, tempId, ConstNpc.THONG_TIN_SIEU_HANG);
+                                    com.girlkun.models.matches.pvp.SuperRankService.gI().topList(player, 0);
                                     break;
                                 case 2:
-                                    com.girlkun.models.matches.pvp.SuperRankService.gI().topList(player, 1);
+                                    com.girlkun.services.NpcService.gI().createTutorial(player, tempId, ConstNpc.THONG_TIN_SIEU_HANG);
                                     break;
                                 case 3:
-                                    com.girlkun.models.matches.pvp.SuperRankService.gI().topList(player, 2);
+                                    com.girlkun.models.matches.pvp.SuperRankService.gI().topList(player, 1);
                                     break;
                                 case 4:
+                                    com.girlkun.models.matches.pvp.SuperRankService.gI().topList(player, 2);
+                                    break;
+                                case 5:
                                     com.girlkun.services.func.ChangeMapService.gI().changeMapNonSpaceship(player, 52, player.location.x, 336);
                                     break;
                             }

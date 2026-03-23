@@ -94,6 +94,7 @@ public class Player {
     public int superRank;
     public int superRankTicket;
     public long lastTimePKSuperRank;
+    public long lastTimeRewardSuperRank;
     public int superRankWins;
     public int superRankLoses;
     public List<String> superRankHistory = new ArrayList<>();

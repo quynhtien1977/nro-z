@@ -23,6 +23,7 @@ public class SuperRankDAO {
                     player.superRankWins = rs.getInt("wins");
                     player.superRankLoses = rs.getInt("loses");
                     player.lastTimePKSuperRank = rs.getLong("last_time_pk");
+                    player.lastTimeRewardSuperRank = rs.getLong("last_time_reward");
                     
                     String historyStr = rs.getString("history");
                     if (historyStr != null && !historyStr.isEmpty()) {
@@ -59,7 +60,7 @@ public class SuperRankDAO {
         player.superRankTicket = 3;
         
         try (Connection con = GirlkunDB.getConnection();
-             PreparedStatement ps = con.prepareStatement("INSERT INTO super_rank (player_id, rank, ticket, wins, loses, last_time_pk, history) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+             PreparedStatement ps = con.prepareStatement("INSERT INTO super_rank (player_id, rank, ticket, wins, loses, last_time_pk, history, last_time_reward) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
             ps.setInt(1, (int) player.id);
             ps.setInt(2, player.superRank);
             ps.setInt(3, player.superRankTicket);
@@ -67,6 +68,7 @@ public class SuperRankDAO {
             ps.setInt(5, 0);
             ps.setLong(6, 0);
             ps.setString(7, "[]");
+            ps.setLong(8, 0);
             ps.executeUpdate();
         } catch (Exception e) {
             Logger.logException(SuperRankDAO.class, e, "Error inserting new Super Rank for player: " + player.name);
@@ -75,7 +77,7 @@ public class SuperRankDAO {
 
     public static void updateSuperRank(Player player) {
         try (Connection con = GirlkunDB.getConnection();
-             PreparedStatement ps = con.prepareStatement("UPDATE super_rank SET rank = ?, ticket = ?, wins = ?, loses = ?, last_time_pk = ?, history = ? WHERE player_id = ?")) {
+             PreparedStatement ps = con.prepareStatement("UPDATE super_rank SET rank = ?, ticket = ?, wins = ?, loses = ?, last_time_pk = ?, history = ?, last_time_reward = ? WHERE player_id = ?")) {
             
             JSONArray arr = new JSONArray();
             arr.addAll(player.superRankHistory);
@@ -86,7 +88,8 @@ public class SuperRankDAO {
             ps.setInt(4, player.superRankLoses);
             ps.setLong(5, player.lastTimePKSuperRank);
             ps.setString(6, arr.toJSONString());
-            ps.setInt(7, (int) player.id);
+            ps.setLong(7, player.lastTimeRewardSuperRank);
+            ps.setInt(8, (int) player.id);
             ps.executeUpdate();
         } catch (Exception e) {
             Logger.logException(SuperRankDAO.class, e, "Error updating Super Rank for player: " + player.name);
