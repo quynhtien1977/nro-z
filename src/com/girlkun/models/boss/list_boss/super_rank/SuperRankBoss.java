@@ -59,7 +59,7 @@ public abstract class SuperRankBoss extends Boss {
                 if (Util.isTrue(1, 20)) {
                     goToPlayer(playerAtt, false);
                 }
-                this.nPoint.mp = this.nPoint.mpMax;
+                this.nPoint.mp = this.nPoint.mpg;
                 if (Util.canDoWithTime(lastTimeEatPea, 5000) && this.nPoint.hp < this.nPoint.hpMax) {
                     UseItem.gI().eatPea(this);
                     lastTimeEatPea = System.currentTimeMillis();
@@ -117,7 +117,7 @@ public abstract class SuperRankBoss extends Boss {
 
     protected void immortalHpMp() {
         this.nPoint.hp = this.nPoint.hpMax;
-        this.nPoint.mp = this.nPoint.mpMax;
+        this.nPoint.mp = this.nPoint.mpg;
     }
 
     @Override
@@ -135,11 +135,13 @@ public abstract class SuperRankBoss extends Boss {
                 case JOIN_MAP:
                     joinMap();
                     if (this.zone != null) {
-                        changeStatus(BossStatus.ACTIVE);
+                        changeStatus(BossStatus.CHAT_S);
                         timeJoinMap = System.currentTimeMillis();
                         this.immortalHpMp();
                         Service.gI().Send_Info_NV(this);
                     }
+                    break;
+                case CHAT_S:
                     break;
                 case ACTIVE:
                     if (this.playerSkill.prepareTuSat || this.playerSkill.prepareLaze || this.playerSkill.prepareQCKK) {

@@ -139,6 +139,7 @@ public class SuperRankService {
     public Player loadPlayer(int id) {
         Player pl = GodGK.loadById(id);
         if (pl != null) {
+            com.girlkun.jdbc.daos.SuperRankDAO.loadSuperRank(pl);
             if (pl.setClothes != null) pl.setClothes.setup();
             if (pl.nPoint != null) pl.nPoint.calPoint();
         }

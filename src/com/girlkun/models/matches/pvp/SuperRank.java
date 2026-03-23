@@ -120,8 +120,8 @@ public final class SuperRank implements Runnable {
                     break;
                 case 3:
                     Service.gI().chat(player, SuperRankService.TEXT_SAN_SANG);
-                    PlayerService.gI().changeAndSendTypePK(player, ConstPlayer.PK_PVP);
-                    PlayerService.gI().changeAndSendTypePK(rival, ConstPlayer.PK_PVP);
+                    PlayerService.gI().changeAndSendTypePK(player, ConstPlayer.PK_ALL);
+                    PlayerService.gI().changeAndSendTypePK(rival, ConstPlayer.PK_ALL);
                     break;
                 case 4:
                     rival.changeStatus(BossStatus.ACTIVE);
@@ -133,7 +133,9 @@ public final class SuperRank implements Runnable {
         if (timeDown > 0) {
             timeDown--;
             if (player != null && player.isPKDHVT && !player.isDie() && player.location != null && player.zone != null && player.zone.equals(zone)) {
-                if (rival == null || rival.zone == null || rival.isDie()) {
+                if (player.location.y > 264) {
+                    lose();
+                } else if (rival == null || rival.zone == null || rival.isDie() || rival.location.y > 264) {
                     win();
                 }
             } else {

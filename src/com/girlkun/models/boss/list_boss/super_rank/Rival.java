@@ -37,8 +37,8 @@ public class Rival extends SuperRankBoss {
                 player.name,
                 player.gender,
                 new short[]{player.getHead(), player.getBody(), player.getLeg(), player.getFlagBag(), player.getAura(), (short)-1},
-                player.nPoint.dameg,
-                new int[]{player.nPoint.hpg},
+                player.nPoint.dame,
+                new int[]{player.nPoint.hpMax},
                 new int[]{113},
                 skillTemp,
                 new String[]{}, //text chat 1
@@ -46,6 +46,15 @@ public class Rival extends SuperRankBoss {
                 new String[]{}, //text chat 3
                 60
         );
+    }
+    @Override
+    public boolean chatS() {
+        return false;
+    }
+
+    @Override
+    public boolean chatE() {
+        return false;
     }
 
 }
