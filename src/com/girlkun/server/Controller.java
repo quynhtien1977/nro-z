@@ -307,7 +307,9 @@ public class Controller implements IMessageHandler {
                             if (menuType == 0 || menuType == 1 || menuType == 2) {
                                 com.girlkun.models.matches.pvp.SuperRankService.gI().competing(player, _id);
                             }
-                        } catch (Exception e) {}
+                        } catch (Exception e) {
+                            com.girlkun.utils.Logger.logException(Controller.class, e, "Lỗi đọc message SuperRank -118");
+                        }
                     }
                     break;
                 case -103:

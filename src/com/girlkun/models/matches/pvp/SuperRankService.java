@@ -21,7 +21,7 @@ public class SuperRankService {
     public static final String TEXT_DOI_THU_DANG_THI_DAU = "Đối thủ đang trong thời gian thi đấu.";
     public static final String TEXT_DANG_CHO = "Bạn đang trong hàng chờ thi đấu.";
     public static final String TEXT_DOI_THU_CHO_THI_DAU = "Đối thủ đang trong hàng chờ thi đấu.";
-    public static final String TEXT_DUOI_HANG = "Bạn không thể thách đấu người hạng cao hơn quá nhiều.";
+    public static final String TEXT_DUOI_HANG = "Bạn không thể thách đấu người có hạng thấp hơn mình.";
     public static final String TEXT_CHINH_MINH = "Không thể tự thách đấu bản thân.";
     public static final String TEXT_KHONG_THE_THI_DAU_TREN_2_HANG = "Chỉ có thể thách đấu người xếp trên tối đa 2 hạng.";
     public static final String TEXT_TOP_100 = "Danh sách Top 100 Super Rank";
