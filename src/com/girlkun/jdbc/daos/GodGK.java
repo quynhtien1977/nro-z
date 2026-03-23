@@ -791,6 +791,10 @@ public class GodGK {
                             }
                             player.nPoint.hp = plHp;
                             player.nPoint.mp = plMp;
+                            
+                            // Load Super Rank
+                            SuperRankDAO.loadSuperRank(player);
+                            
                             player.iDMark.setLoadedAllDataPlayer(true);
                             GirlkunDB.executeUpdate("update account set last_time_login = '" + new Timestamp(System.currentTimeMillis()) + "', ip_address = '" + session.ipAddress + "' where id = " + session.userId);
                         }
