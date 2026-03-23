@@ -29,6 +29,7 @@ public class SuperRankDAO {
                     if (historyStr != null && !historyStr.isEmpty()) {
                         JSONArray arr = (JSONArray) JSONValue.parse(historyStr);
                         if (arr != null) {
+                            player.superRankHistory.clear();
                             for (Object obj : arr) {
                                 player.superRankHistory.add(String.valueOf(obj));
                             }
@@ -45,33 +46,47 @@ public class SuperRankDAO {
     }
 
     private static void insertNewRank(Player player) {
-        // Find the lowest available rank
-        int maxRank = 0;
-        try (Connection con = GirlkunDB.getConnection();
-             PreparedStatement ps = con.prepareStatement("SELECT MAX(rank) AS max_rank FROM super_rank");
-             ResultSet rs = ps.executeQuery()) {
+        Connection con = null;
+        PreparedStatement psSelect = null;
+        PreparedStatement psInsert = null;
+        ResultSet rs = null;
+        try {
+            con = GirlkunDB.getConnection();
+            con.setAutoCommit(false);
+            
+            psSelect = con.prepareStatement("SELECT MAX(rank) AS max_rank FROM super_rank FOR UPDATE");
+            rs = psSelect.executeQuery();
+            
+            int maxRank = 0;
             if (rs.next()) {
                 maxRank = rs.getInt("max_rank");
             }
+            
+            player.superRank = maxRank + 1;
+            player.superRankTicket = 3;
+            
+            psInsert = con.prepareStatement("INSERT INTO super_rank (player_id, rank, ticket, wins, loses, last_time_pk, history, last_time_reward) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            psInsert.setInt(1, (int) player.id);
+            psInsert.setInt(2, player.superRank);
+            psInsert.setInt(3, player.superRankTicket);
+            psInsert.setInt(4, 0);
+            psInsert.setInt(5, 0);
+            psInsert.setLong(6, 0);
+            psInsert.setString(7, "[]");
+            psInsert.setLong(8, 0);
+            psInsert.executeUpdate();
+            
+            con.commit();
         } catch (Exception e) {
-        }
-        
-        player.superRank = maxRank + 1;
-        player.superRankTicket = 3;
-        
-        try (Connection con = GirlkunDB.getConnection();
-             PreparedStatement ps = con.prepareStatement("INSERT INTO super_rank (player_id, rank, ticket, wins, loses, last_time_pk, history, last_time_reward) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
-            ps.setInt(1, (int) player.id);
-            ps.setInt(2, player.superRank);
-            ps.setInt(3, player.superRankTicket);
-            ps.setInt(4, 0);
-            ps.setInt(5, 0);
-            ps.setLong(6, 0);
-            ps.setString(7, "[]");
-            ps.setLong(8, 0);
-            ps.executeUpdate();
-        } catch (Exception e) {
+            if (con != null) {
+                try { con.rollback(); } catch (Exception ex) {}
+            }
             Logger.logException(SuperRankDAO.class, e, "Error inserting new Super Rank for player: " + player.name);
+        } finally {
+            try { if (rs != null) rs.close(); } catch (Exception e) {}
+            try { if (psSelect != null) psSelect.close(); } catch (Exception e) {}
+            try { if (psInsert != null) psInsert.close(); } catch (Exception e) {}
+            try { if (con != null) { con.setAutoCommit(true); con.close(); } } catch (Exception e) {}
         }
     }
 

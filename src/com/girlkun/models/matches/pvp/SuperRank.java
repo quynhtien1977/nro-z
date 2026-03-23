@@ -154,8 +154,8 @@ public final class SuperRank implements Runnable {
             Player plLose = SuperRankService.gI().loadPlayer((int) rivalId);
             plWin.superRankWins++;
             plLose.superRankLoses++;
-            if (plWin.superRankTicket == 0 && plWin.inventory.gem > 0) {
-                plWin.inventory.gem -= 2;
+            if (plWin.superRankTicket <= 0 && plWin.inventory.ruby >= 10) {
+                plWin.inventory.ruby -= 10;
             }
             plWin.superRank = rankWin;
             plWin.recordSuperRankHistory("Hạ " + plLose.name + "[" + rankLose + "]", System.currentTimeMillis());
@@ -171,8 +171,8 @@ public final class SuperRank implements Runnable {
             
             if (player != null && player.zone != null) {
                 player.superRankWins++;
-                if (player.superRankTicket == 0 && player.inventory.gem > 0) {
-                    player.inventory.gem -= 2;
+                if (player.superRankTicket <= 0 && player.inventory.ruby >= 10) {
+                    player.inventory.ruby -= 10;
                     Service.gI().sendMoney(player);
                 }
                 player.superRank = rankWin;
@@ -201,8 +201,8 @@ public final class SuperRank implements Runnable {
             plLose.superRankLoses++;
             if (plLose.superRankTicket > 0) {
                 plLose.superRankTicket--;
-            } else if (plLose.inventory.gem > 0) {
-                plLose.inventory.gem -= 3;
+            } else if (plLose.inventory.ruby >= 10) {
+                plLose.inventory.ruby -= 10;
             }
             plWin.superRank = rankWin;
             plWin.recordSuperRankHistory("Hạ " + plLose.name + "[" + rankLose + "]", System.currentTimeMillis());
@@ -216,8 +216,8 @@ public final class SuperRank implements Runnable {
                 player.superRankLoses++;
                 if (player.superRankTicket > 0) {
                     player.superRankTicket--;
-                } else if (player.inventory.gem > 0) {
-                    player.inventory.gem -= 3;
+                } else if (player.inventory.ruby >= 10) {
+                    player.inventory.ruby -= 10;
                     Service.gI().sendMoney(player);
                 }
                 player.superRank = rankLose;

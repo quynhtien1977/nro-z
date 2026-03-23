@@ -5,9 +5,8 @@ import com.girlkun.models.player.Player;
 import com.girlkun.server.Client;
 import com.girlkun.server.Maintenance;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SuperRankManager implements Runnable {
 
@@ -32,8 +31,8 @@ public class SuperRankManager implements Runnable {
     }
 
     public SuperRankManager() {
-        waitList = new ArrayList<>();
-        list = new ArrayList<>();
+        waitList = new CopyOnWriteArrayList<>();
+        list = new CopyOnWriteArrayList<>();
     }
 
     @Override
@@ -41,18 +40,16 @@ public class SuperRankManager implements Runnable {
         while (!Maintenance.isRuning) {
             long startTime = System.currentTimeMillis();
             try {
-                Iterator<WaitSuperRank> iterator = waitList.iterator();
-                while (iterator.hasNext()) {
-                    WaitSuperRank wsp = iterator.next();
+                for (WaitSuperRank wsp : waitList) {
                     Player wPl = Client.gI().getPlayer(wsp.playerId);
                     // 113 is map Dai Hoi Vo Thuat
                     if (wPl != null && wPl.zone != null && wPl.zone.map.mapId == 113) {
                         if (!SPRCheck(wPl.zone)) {
                             list.add(new SuperRank(wPl, wsp.rivalId, wPl.zone));
-                            iterator.remove();
+                            waitList.remove(wsp);
                         }
                     } else {
-                        iterator.remove();
+                        waitList.remove(wsp);
                     }
                 }
             } catch (Exception e) {

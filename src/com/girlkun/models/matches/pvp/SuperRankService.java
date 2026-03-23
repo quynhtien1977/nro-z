@@ -71,8 +71,8 @@ public class SuperRankService {
         } else if (pl.superRank < 10 && player.superRank - pl.superRank > 2) {
             Service.gI().sendThongBao(player, TEXT_KHONG_THE_THI_DAU_TREN_2_HANG);
             return;
-        } else if (player.superRankTicket <= 0 && player.inventory.gem < 1) {
-            Service.gI().sendThongBao(player, "Bạn không đủ ngọc, còn thiếu 1 ngọc nữa");
+        } else if (player.superRankTicket <= 0 && player.inventory.ruby < 10) {
+            Service.gI().sendThongBao(player, "Bạn không đủ hồng ngọc, cần ít nhất 10 hồng ngọc để tham gia");
             return;
         }
 
@@ -133,7 +133,7 @@ public class SuperRankService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Logger.log("Processing time: " + (System.currentTimeMillis() - st) + " milliseconds", "INFO");
+        Logger.log("[INFO] Processing time: " + (System.currentTimeMillis() - st) + " milliseconds");
     }
 
     public Player loadPlayer(int id) {

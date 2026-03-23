@@ -11,7 +11,7 @@ import com.girlkun.models.boss.BossManager;
 import com.girlkun.models.item.Item;
 import com.girlkun.models.map.BDKB.BanDoKhoBau;
 import com.girlkun.models.map.challenge.MartialCongressManager;
-//import com.girlkun.models.matches.pvp.DaiHoiVoThuat;
+import com.girlkun.models.matches.pvp.SuperRankManager;
 import com.girlkun.models.player.Player;
 import com.girlkun.models.player.Playerao;
 import com.girlkun.network.session.ISession;
@@ -112,6 +112,7 @@ public class ServerManager {
                 }
             }
         }, "Update dai hoi vo thuat").start();
+        new Thread(SuperRankManager.gI(), "SuperRankManager").start();
         try {
             Thread.sleep(3000);
             BossManager.gI().loadBoss();

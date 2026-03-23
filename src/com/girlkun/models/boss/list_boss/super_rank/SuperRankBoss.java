@@ -112,6 +112,9 @@ public abstract class SuperRankBoss extends Boss {
         if (playerAtt.zone != null) {
             this.zone = playerAtt.zone;
             ChangeMapService.gI().changeMap(this, this.zone, 434, 264);
+            timeJoinMap = System.currentTimeMillis();
+            this.immortalHpMp();
+            Service.gI().Send_Info_NV(this);
         }
     }
 
@@ -121,39 +124,8 @@ public abstract class SuperRankBoss extends Boss {
     }
 
     @Override
-    public void update() {
-        try {
-            super.update();
-            if ((this.effectSkill != null && this.effectSkill.isHaveEffectSkill()) 
-                    || (this.skillSpecial != null && this.skillSpecial.isStartSkillSpecial)) {
-                return;
-            }
-            switch (this.bossStatus) {
-                case RESPAWN:
-                    this.respawn();
-                    this.changeStatus(BossStatus.JOIN_MAP);
-                case JOIN_MAP:
-                    joinMap();
-                    if (this.zone != null) {
-                        changeStatus(BossStatus.CHAT_S);
-                        timeJoinMap = System.currentTimeMillis();
-                        this.immortalHpMp();
-                        Service.gI().Send_Info_NV(this);
-                    }
-                    break;
-                case CHAT_S:
-                    break;
-                case ACTIVE:
-                    if (this.playerSkill.prepareTuSat || this.playerSkill.prepareLaze || this.playerSkill.prepareQCKK) {
-                        break;
-                    } else {
-                        this.attack();
-                    }
-                    break;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public boolean chatS() {
+        return false;
     }
 
     protected void notifyPlayeKill(Player player) {
