@@ -13,7 +13,8 @@ public enum BossStatus {
     ACTIVE,
     DIE,
     CHAT_E,
-    LEAVE_MAP
+    LEAVE_MAP,
+    AFK
 
 }
 

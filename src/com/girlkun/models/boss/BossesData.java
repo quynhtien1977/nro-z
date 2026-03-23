@@ -2633,5 +2633,43 @@ public class BossesData {
             new String[]{"|-1|Núi tan... nhưng ta vẫn chiến!"}, //text chat 3
             TypeAppear.APPEAR_WITH_ANOTHER //type appear
     );
+
+    // Noel
+    public static final BossData ONG_GIA_NOEL = new BossData(
+            "Ông Già Noel",
+            ConstPlayer.TRAI_DAT,
+            new short[]{805, 806, 807, -1, -1, -1}, 
+            10, // dame
+            new int[]{2000000000}, // hp (very high so he doesn't die easily)
+            new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36}, // map join
+            new int[][]{
+            },//skill
+            new String[]{"|-1|Chào các cháu",
+                    "|-1|Ta đến phát quà đây!"
+            }, //text chat 1
+            new String[]{"|-1|Hô hô hô!"}, //text chat 2
+            new String[]{"|-1|Tạm biệt các cháu..."}, //text chat 3
+            REST_10_M, 
+            TypeAppear.DEFAULT_APPEAR
+    );
+
+    // Tet
+    public static final BossData LAN_CON = new BossData(
+            "Lân con",
+            ConstPlayer.TRAI_DAT,
+            new short[]{763, 764, 765, -1, -1, -1},
+            100000, // dame
+            new int[]{1000000}, // hp (Shielding mechanism will handle true damage) -> Fixed from 1 million to 2 billion to match NRO 2014 logic
+            new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36}, // map join
+            new int[][]{
+            },//skill
+            new String[]{"|-1|Tùng tùng tùng!",
+                    "|-1|Cheng cheng cheng!"
+            }, //text chat 1
+            new String[]{"|-1|Tùng tùng cheng cheng!"}, //text chat 2
+            new String[]{"|-1|Hú hú..."}, //text chat 3
+            REST_15_M, 
+            TypeAppear.DEFAULT_APPEAR
+    );
 }
 
