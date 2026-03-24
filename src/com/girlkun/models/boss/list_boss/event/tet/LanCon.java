@@ -30,7 +30,27 @@ public class LanCon extends Boss {
         {"Mừng đảng mừng ... ?", "xuân"},
         {"Bánh chưng xanh bên dưa hấu ... ?", "đỏ"},
         {"Mai vàng nở rộ đón xuân ... ?", "sang"},
-        {"Tết đến xuân ... ?", "về"}
+        {"Tết đến xuân ... ?", "về"},
+        {"Thế gian ai là người đẹp nhất?", "Trúc"},
+        {" ... là người vừa xinh đẹp, dễ thương nhất", "Thư"},
+        {"Tân niên đại cát đại ... ?", "lợi"},
+        {"Phú quý cát ... ?", "tường"},
+        {"Mã đáo thành ... ?", "công"},
+        {"Thuận buồm xuôi ... ?", "gió"},
+        {"Gia đạo bình ... ?", "an"},
+        {"Làm ăn phát ... ?", "đạt"},
+        {"Công danh tấn ... ?", "tới"},
+        {"Tình duyên phơi ... ?", "phới"},
+        {"Trẻ mãi không ... ?", "già"},
+        {"Sống lâu trăm ... ?", "tuổi"},
+        {"Phước lộc thọ ... ?", "toàn"},
+        {"Phúc như đông ... ?", "hải"},
+        {"Thọ tỷ nam ... ?", "sơn"},
+        {"Tiền ra nhỏ giọt như cà phê ... ?", "phin"}, // Câu này hơi hài hước chút
+        {"Trăm hoa đua ... ?", "nở"},
+        {"Sum vầy đoàn ... ?", "viên"},
+        {"Ngập tràn niềm ... ?", "vui"},
+        {"Vui như ... ?", "Tết"}
     };
 
     public LanCon() throws Exception {
@@ -126,7 +146,7 @@ public class LanCon extends Boss {
             if (this.bossStatus == BossStatus.AFK) {
                 this.afk();
             } else if (!this.isDie()) {
-                if (Util.canDoWithTime(lastTimeAsk, 15000)) {
+                if (Util.canDoWithTime(lastTimeAsk, 30000)) {
                     currentQuestionIndex = Util.nextInt(0, TET_QA.length - 1);
                     this.chat("Điền vào chỗ trống để ta đi theo nhé: " + TET_QA[currentQuestionIndex][0]);
                     lastTimeAsk = System.currentTimeMillis();
