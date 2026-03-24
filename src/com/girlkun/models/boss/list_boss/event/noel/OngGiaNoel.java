@@ -56,7 +56,7 @@ public class OngGiaNoel extends Boss {
                 if (pl == null || pl.location == null) {
                     return;
                 }
-                if (Util.getDistance(this, pl) <= 752002) {
+                if (Util.getDistance(this, pl) <= 1000) {
                     if (Util.isTrue(5, 20) && Util.getDistance(this, pl) > 50) {
                         this.moveTo(pl.location.x + (Util.getOne(-1, 1) * Util.nextInt(20, 200)), pl.location.y);
                     } else if (Util.getDistance(this, pl) <= 50) {

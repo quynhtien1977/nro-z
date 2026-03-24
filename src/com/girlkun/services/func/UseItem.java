@@ -489,7 +489,7 @@ public class UseItem {
                             UseItem.gI().hopquagiangsinh(pl);
                             break;
                         case 648: // Hộp quà giáng sinh (Noel)
-                            UseItem.gI().NoelItemBox(pl);
+                            UseItem.gI().NoelItemBox(pl, item);
                             break;
                         case 1128:
                             openDaBaoVe(pl, item);
@@ -802,13 +802,12 @@ public class UseItem {
         }
     }
 
-    private void NoelItemBox(Player player) {
+    private void NoelItemBox(Player player, Item item) {
         try {
             if (InventoryServiceNew.gI().getCountEmptyBag(player) <= 0) {
                 Service.gI().sendThongBao(player, "Hành trang không đủ chỗ trống");
                 return;
             }
-            Item item = InventoryServiceNew.gI().findItemBag(player, 648);
             if (item != null) {
                 InventoryServiceNew.gI().subQuantityItemsBag(player, item, 1);
                 int randomOption = Util.nextInt(1, 100);

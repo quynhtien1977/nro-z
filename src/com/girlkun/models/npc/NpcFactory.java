@@ -201,7 +201,8 @@ public class NpcFactory {
                 Item ruacon = InventoryServiceNew.gI().findItemBag(player, 874);
                 if (canOpenNpc(player)) {
                     if (player.canReward) {
-                        this.createOtherMenu(player, 25, "Cảm ơn ơn vì đã mang Lân con tới đây vui đùa cùng các đệ tử của ta, ta có chút quà gửi cho con nhé",
+                        this.createOtherMenu(player, 25,
+                                "cảm ơn vì đã mang Lân con tới đây vui đùa cùng các đệ tử của ta, ta có chút quà gửi cho con nhé",
                                 "Giao\nLân con", "Từ chối");
                     } else if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
                         if (ruacon != null && ruacon.quantity >= 1) {
@@ -541,7 +542,8 @@ public class NpcFactory {
             public void openBaseMenu(Player player) {
                 if (canOpenNpc(player)) {
                     if (player.canReward) {
-                        this.createOtherMenu(player, 25, "Cảm ơn ơn vì đã mang Lân con tới đây vui đùa cùng các đệ tử của ta, ta có chút quà gửi cho con nhé",
+                        this.createOtherMenu(player, 25,
+                                "cảm ơn vì đã mang Lân con tới đây vui đùa cùng các đệ tử của ta, ta có chút quà gửi cho con nhé",
                                 "Giao\nLân con", "Từ chối");
                     } else if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
                         super.openBaseMenu(player);
@@ -570,7 +572,8 @@ public class NpcFactory {
             public void openBaseMenu(Player player) {
                 if (canOpenNpc(player)) {
                     if (player.canReward) {
-                        this.createOtherMenu(player, 25, "Cảm ơn ơn vì đã mang Lân con tới đây vui đùa cùng các đệ tử của ta, ta có chút quà gửi cho con nhé",
+                        this.createOtherMenu(player, 25,
+                                "cảm ơn vì đã mang Lân con tới đây vui đùa cùng các đệ tử của ta, ta có chút quà gửi cho con nhé",
                                 "Giao\nLân con", "Từ chối");
                     } else if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
                         super.openBaseMenu(player);
@@ -1500,12 +1503,16 @@ public class NpcFactory {
                     if (this.mapId == 113) {
                         if (com.girlkun.models.matches.pvp.SuperRankManager.gI().awaiting(player)) {
                             int ordinal = com.girlkun.models.matches.pvp.SuperRankManager.gI().ordinal(player.id);
-                            createOtherMenu(player, ConstNpc.BASE_MENU, "Vui lòng chờ, số thứ tự của bạn là " + ordinal, "OK", "Về\nĐại Hội\nVõ Thuật");
+                            createOtherMenu(player, ConstNpc.BASE_MENU, "Vui lòng chờ, số thứ tự của bạn là " + ordinal,
+                                    "OK", "Về\nĐại Hội\nVõ Thuật");
                         } else {
-                            String ticketMsg = player.superRankTicket > 0 ? "Miễn phí\nCòn " + player.superRankTicket + " vé" : "Thi đấu";
+                            String ticketMsg = player.superRankTicket > 0
+                                    ? "Miễn phí\nCòn " + player.superRankTicket + " vé"
+                                    : "Thi đấu";
                             createOtherMenu(player, ConstNpc.BASE_MENU,
                                     "Đại hội võ thuật Siêu Hạng\ndiễn ra 24/7 kể cả ngày lễ và chủ nhật\nHãy thi đấu ngay để khẳng định đẳng cấp của mình nhé",
-                                    "Nhận\nthưởng", "Top 100\nCao Thủ", "Hướng\ndẫn\nthêm", ticketMsg, "Ưu tiên\nđấu ngay", "Về\nĐại Hội\nVõ Thuật");
+                                    "Nhận\nthưởng", "Top 100\nCao Thủ", "Hướng\ndẫn\nthêm", ticketMsg,
+                                    "Ưu tiên\nđấu ngay", "Về\nĐại Hội\nVõ Thuật");
                         }
                     } else if (this.mapId == 13) {
                         createOtherMenu(player, ConstNpc.BASE_MENU,
@@ -1522,37 +1529,46 @@ public class NpcFactory {
                         if (player.iDMark.isBaseMenu()) {
                             if (com.girlkun.models.matches.pvp.SuperRankManager.gI().awaiting(player)) {
                                 if (select == 1) {
-                                    com.girlkun.services.func.ChangeMapService.gI().changeMapNonSpaceship(player, 52, player.location.x, 336);
+                                    com.girlkun.services.func.ChangeMapService.gI().changeMapNonSpaceship(player, 52,
+                                            player.location.x, 336);
                                 }
                                 return;
                             }
                             switch (select) {
                                 case 0:
-                                    if (com.girlkun.utils.Util.canDoWithTime(player.lastTimeRewardSuperRank, 86400000)) {
+                                    if (com.girlkun.utils.Util.canDoWithTime(player.lastTimeRewardSuperRank,
+                                            86400000)) {
                                         int ruby = 0;
-                                        if (player.superRank == 1) ruby = 1000;
-                                        else if (player.superRank >= 2 && player.superRank <= 10) ruby = 200;
-                                        else if (player.superRank >= 11 && player.superRank <= 100) ruby = 50;
-                                        else if (player.superRank >= 101 && player.superRank <= 1000) ruby = 10;
+                                        if (player.superRank == 1)
+                                            ruby = 1000;
+                                        else if (player.superRank >= 2 && player.superRank <= 10)
+                                            ruby = 200;
+                                        else if (player.superRank >= 11 && player.superRank <= 100)
+                                            ruby = 50;
+                                        else if (player.superRank >= 101 && player.superRank <= 1000)
+                                            ruby = 10;
 
                                         if (ruby > 0) {
                                             player.inventory.ruby += ruby;
                                             player.lastTimeRewardSuperRank = System.currentTimeMillis();
                                             com.girlkun.jdbc.daos.SuperRankDAO.updateSuperRank(player);
                                             Service.gI().sendMoney(player);
-                                            Service.gI().sendThongBao(player, "Bạn nhận được " + ruby + " hồng ngọc phần thưởng xếp hạng " + player.superRank);
+                                            Service.gI().sendThongBao(player, "Bạn nhận được " + ruby
+                                                    + " hồng ngọc phần thưởng xếp hạng " + player.superRank);
                                         } else {
                                             Service.gI().sendThongBao(player, "Hạng của bạn chưa đủ để nhận thưởng!");
                                         }
                                     } else {
-                                        Service.gI().sendThongBao(player, "Bạn đã nhận phần thưởng hôm nay rồi, hãy quay lại vào ngày mai!");
+                                        Service.gI().sendThongBao(player,
+                                                "Bạn đã nhận phần thưởng hôm nay rồi, hãy quay lại vào ngày mai!");
                                     }
                                     break;
                                 case 1:
                                     com.girlkun.models.matches.pvp.SuperRankService.gI().topList(player, 0);
                                     break;
                                 case 2:
-                                    com.girlkun.services.NpcService.gI().createTutorial(player, tempId, ConstNpc.THONG_TIN_SIEU_HANG);
+                                    com.girlkun.services.NpcService.gI().createTutorial(player, tempId,
+                                            ConstNpc.THONG_TIN_SIEU_HANG);
                                     break;
                                 case 3:
                                     com.girlkun.models.matches.pvp.SuperRankService.gI().topList(player, 1);
@@ -1561,7 +1577,8 @@ public class NpcFactory {
                                     com.girlkun.models.matches.pvp.SuperRankService.gI().topList(player, 2);
                                     break;
                                 case 5:
-                                    com.girlkun.services.func.ChangeMapService.gI().changeMapNonSpaceship(player, 52, player.location.x, 336);
+                                    com.girlkun.services.func.ChangeMapService.gI().changeMapNonSpaceship(player, 52,
+                                            player.location.x, 336);
                                     break;
                             }
                         }
@@ -5192,12 +5209,13 @@ public class NpcFactory {
                                     Item itemDrop = ItemService.gI().createNewItem((short) 1772);
                                     itemDrop.itemOptions.add(new Item.ItemOption(77, Util.nextInt(10, 20))); // HP %
                                     itemDrop.itemOptions.add(new Item.ItemOption(103, Util.nextInt(10, 20))); // KI %
-                                    itemDrop.itemOptions.add(new Item.ItemOption(50, Util.nextInt(5, 15)));  // SD %
-                                    itemDrop.itemOptions.add(new Item.ItemOption(14, Util.nextInt(1, 5)));   // Crit %
+                                    itemDrop.itemOptions.add(new Item.ItemOption(50, Util.nextInt(5, 15))); // SD %
+                                    itemDrop.itemOptions.add(new Item.ItemOption(14, Util.nextInt(1, 5))); // Crit %
                                     if (Util.isTrue(10, 100)) {
                                         // Vĩnh viễn (10%)
                                     } else {
-                                        itemDrop.itemOptions.add(new Item.ItemOption(93, Util.nextInt(1, 15))); // HSD (90%)
+                                        itemDrop.itemOptions.add(new Item.ItemOption(93, Util.nextInt(1, 15))); // HSD
+                                                                                                                // (90%)
                                     }
                                     InventoryServiceNew.gI().addItemBag(player, itemDrop);
                                     InventoryServiceNew.gI().sendItemBags(player);
@@ -5216,12 +5234,13 @@ public class NpcFactory {
                                     Item itemDrop = ItemService.gI().createNewItem((short) 1773);
                                     itemDrop.itemOptions.add(new Item.ItemOption(77, Util.nextInt(10, 20))); // HP %
                                     itemDrop.itemOptions.add(new Item.ItemOption(103, Util.nextInt(10, 20))); // KI %
-                                    itemDrop.itemOptions.add(new Item.ItemOption(50, Util.nextInt(5, 15)));  // SD %
-                                    itemDrop.itemOptions.add(new Item.ItemOption(14, Util.nextInt(1, 5)));   // Crit %
+                                    itemDrop.itemOptions.add(new Item.ItemOption(50, Util.nextInt(5, 15))); // SD %
+                                    itemDrop.itemOptions.add(new Item.ItemOption(14, Util.nextInt(1, 5))); // Crit %
                                     if (Util.isTrue(10, 100)) {
                                         // Vĩnh viễn (10%)
                                     } else {
-                                        itemDrop.itemOptions.add(new Item.ItemOption(93, Util.nextInt(1, 15))); // HSD (90%)
+                                        itemDrop.itemOptions.add(new Item.ItemOption(93, Util.nextInt(1, 15))); // HSD
+                                                                                                                // (90%)
                                     }
                                     InventoryServiceNew.gI().addItemBag(player, itemDrop);
                                     InventoryServiceNew.gI().sendItemBags(player);

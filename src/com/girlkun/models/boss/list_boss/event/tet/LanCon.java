@@ -27,6 +27,13 @@ public class LanCon extends Boss {
 
     @Override
     public void leaveMap() {
+        if (this.playerId != -1 && this.playerId != 0) {
+            Player pl = Client.gI().getPlayer(this.playerId);
+            if (pl != null) {
+                pl.canReward = false;
+                pl.haveReward = false;
+            }
+        }
         super.leaveMap();
         this.playerId = -1;
     }
@@ -60,6 +67,8 @@ public class LanCon extends Boss {
             }
         }
     }
+
+
 
     public void afk() {
         if (Util.canDoWithTime(this.lastTimeAttack, 500)) {
