@@ -33,7 +33,7 @@ public class BossesData {
     private static final int REST_2_M = 120;
     private static final int REST_5_M = 300;
     private static final int REST_10_M = 600;
-    private static final int REST_15_M = 420;
+    private static final int REST_15_M = 900;
     private static final int REST_30_M = 1800;
     private static final int REST_1_H = 3600;
     private static final int REST_2_H = 7200;
