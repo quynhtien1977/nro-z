@@ -102,6 +102,8 @@ public class Player {
     public byte maxTime = 30;
     public byte type = 0;
     public int ResetSkill = 0;
+    public boolean canReward;
+    public boolean haveReward;
     public int mapIdBeforeLogout;
     // public boolean tickxanh = false;
     public List<Zone> mapBlackBall;
@@ -194,6 +196,8 @@ public class Player {
     public boolean haveDuongTang = false;
     public int mapCongDuc;
     public List<Archivement> archivementList = new ArrayList<>();
+
+    public String lastChatMessage = ""; // Added for Tet Event (LanCon)
 
     public void recordSuperRankHistory(String record, long time) {
         if (this.superRankHistory == null) {

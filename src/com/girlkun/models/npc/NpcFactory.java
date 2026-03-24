@@ -200,7 +200,10 @@ public class NpcFactory {
             public void openBaseMenu(Player player) {
                 Item ruacon = InventoryServiceNew.gI().findItemBag(player, 874);
                 if (canOpenNpc(player)) {
-                    if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
+                    if (player.canReward) {
+                        this.createOtherMenu(player, 25, "Cảm ơn ơn vì đã mang Lân con tới đây vui đùa cùng các đệ tử của ta, ta có chút quà gửi cho con nhé",
+                                "Giao\nLân con", "Từ chối");
+                    } else if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
                         if (ruacon != null && ruacon.quantity >= 1) {
                             this.createOtherMenu(player, 12, "Chào con, ta rất vui khi gặp con\n Con muốn làm gì nào ?",
                                     "Giao\nRùa con", "Nói chuyện");
@@ -215,7 +218,13 @@ public class NpcFactory {
             @Override
             public void confirmMenu(Player player, int select) {
                 if (canOpenNpc(player)) {
-                    if (player.iDMark.getIndexMenu() == 12) {
+                    if (player.iDMark.getIndexMenu() == 25) {
+                        if (select == 0) {
+                            if (player.canReward) {
+                                rewardLanCon(player);
+                            }
+                        }
+                    } else if (player.iDMark.getIndexMenu() == 12) {
                         switch (select) {
                             case 0:
                                 this.createOtherMenu(player, 5,
@@ -531,7 +540,10 @@ public class NpcFactory {
             @Override
             public void openBaseMenu(Player player) {
                 if (canOpenNpc(player)) {
-                    if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
+                    if (player.canReward) {
+                        this.createOtherMenu(player, 25, "Cảm ơn ơn vì đã mang Lân con tới đây vui đùa cùng các đệ tử của ta, ta có chút quà gửi cho con nhé",
+                                "Giao\nLân con", "Từ chối");
+                    } else if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
                         super.openBaseMenu(player);
                     }
                 }
@@ -540,7 +552,13 @@ public class NpcFactory {
             @Override
             public void confirmMenu(Player player, int select) {
                 if (canOpenNpc(player)) {
-
+                    if (player.iDMark.getIndexMenu() == 25) {
+                        if (select == 0) {
+                            if (player.canReward) {
+                                rewardLanCon(player);
+                            }
+                        }
+                    }
                 }
             }
         };
@@ -551,7 +569,10 @@ public class NpcFactory {
             @Override
             public void openBaseMenu(Player player) {
                 if (canOpenNpc(player)) {
-                    if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
+                    if (player.canReward) {
+                        this.createOtherMenu(player, 25, "Cảm ơn ơn vì đã mang Lân con tới đây vui đùa cùng các đệ tử của ta, ta có chút quà gửi cho con nhé",
+                                "Giao\nLân con", "Từ chối");
+                    } else if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
                         super.openBaseMenu(player);
                     }
                 }
@@ -560,10 +581,29 @@ public class NpcFactory {
             @Override
             public void confirmMenu(Player player, int select) {
                 if (canOpenNpc(player)) {
-
+                    if (player.iDMark.getIndexMenu() == 25) {
+                        if (select == 0) {
+                            if (player.canReward) {
+                                rewardLanCon(player);
+                            }
+                        }
+                    }
                 }
             }
         };
+    }
+
+    public static void rewardLanCon(Player player) {
+        if (InventoryServiceNew.gI().getCountEmptyBag(player) > 0) {
+            Item item = ItemService.gI().createNewItem((short) Util.nextInt(14, 20));
+            InventoryServiceNew.gI().addItemBag(player, item);
+            InventoryServiceNew.gI().sendItemBags(player);
+            Service.gI().sendThongBao(player, "Ngươi nhận được " + item.template.name);
+            player.canReward = false;
+            player.haveReward = true;
+        } else {
+            Service.gI().sendThongBao(player, "Hành trang đầy rồi");
+        }
     }
 
     public static Npc ongGohan_ongMoori_ongParagus(int mapId, int status, int cx, int cy, int tempId, int avartar) {

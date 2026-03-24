@@ -488,6 +488,9 @@ public class UseItem {
                         case 2078:
                             UseItem.gI().hopquagiangsinh(pl);
                             break;
+                        case 648: // Hộp quà giáng sinh (Noel)
+                            UseItem.gI().NoelItemBox(pl);
+                            break;
                         case 1128:
                             openDaBaoVe(pl, item);
                             break;
@@ -796,6 +799,60 @@ public class UseItem {
             InventoryServiceNew.gI().sendItemBags(pl);
         } else {
             Service.gI().sendThongBaoOK(pl, "Sức mạnh không đủ yêu cầu");
+        }
+    }
+
+    private void NoelItemBox(Player player) {
+        try {
+            if (InventoryServiceNew.gI().getCountEmptyBag(player) <= 0) {
+                Service.gI().sendThongBao(player, "Hành trang không đủ chỗ trống");
+                return;
+            }
+            Item item = InventoryServiceNew.gI().findItemBag(player, 648);
+            if (item != null) {
+                InventoryServiceNew.gI().subQuantityItemsBag(player, item, 1);
+                int randomOption = Util.nextInt(1, 100);
+                if (randomOption <= 20) { 
+                    Item saoPhaLe = ItemService.gI().createNewItem((short) Util.nextInt(441, 447)); // Sao pha le
+                    saoPhaLe.quantity = 1;
+                    InventoryServiceNew.gI().addItemBag(player, saoPhaLe);
+                    Service.gI().sendThongBao(player, "Bạn nhận được " + saoPhaLe.template.name);
+                } else if (randomOption <= 40) { 
+                    Item daNangCap = ItemService.gI().createNewItem((short) Util.nextInt(220, 224)); // Đá nâng cấp
+                    daNangCap.quantity = 1;
+                    InventoryServiceNew.gI().addItemBag(player, daNangCap);
+                    Service.gI().sendThongBao(player, "Bạn nhận được " + daNangCap.template.name);
+                } else if (randomOption <= 50) { 
+                    Item ngocRong = ItemService.gI().createNewItem((short) Util.nextInt(17, 20)); // Ngọc rồng 4-7 sao
+                    ngocRong.quantity = 1;
+                    InventoryServiceNew.gI().addItemBag(player, ngocRong);
+                    Service.gI().sendThongBao(player, "Bạn nhận được " + ngocRong.template.name);
+                } else if (randomOption <= 60) { 
+                    Item caiTrang = ItemService.gI().createNewItem((short) Util.nextInt(740, 741)); // Cải trang noel mũ đỏ/xanh
+                    caiTrang.itemOptions.add(new ItemOption(50, Util.nextInt(10, 20))); // Sức đánh
+                    caiTrang.itemOptions.add(new ItemOption(77, Util.nextInt(10, 20))); // HP
+                    caiTrang.itemOptions.add(new ItemOption(103, Util.nextInt(10, 20))); // KI
+                    caiTrang.itemOptions.add(new ItemOption(93, Util.nextInt(1, 3))); // HSD 1-3 ngay
+                    InventoryServiceNew.gI().addItemBag(player, caiTrang);
+                    Service.gI().sendThongBao(player, "Bạn nhận được " + caiTrang.template.name);
+                } else if (randomOption <= 80) { 
+                    Item xeTruotTuyet = ItemService.gI().createNewItem((short) 742); // Thú cưỡi tuần lộc/xe trượt tuyết
+                    xeTruotTuyet.itemOptions.add(new ItemOption(50, 10)); // Sức đánh
+                    xeTruotTuyet.itemOptions.add(new ItemOption(77, 10)); // HP
+                    xeTruotTuyet.itemOptions.add(new ItemOption(103, 10)); // KI
+                    xeTruotTuyet.itemOptions.add(new ItemOption(93, Util.nextInt(1, 7))); // HSD 1-7 ngay
+                    InventoryServiceNew.gI().addItemBag(player, xeTruotTuyet);
+                    Service.gI().sendThongBao(player, "Bạn nhận được " + xeTruotTuyet.template.name);
+                } else { 
+                    int ruby = Util.nextInt(100, 500);
+                    player.inventory.ruby += ruby;
+                    Service.gI().sendMoney(player);
+                    Service.gI().sendThongBao(player, "Bạn nhận được " + ruby + " Hồng ngọc");
+                }
+                InventoryServiceNew.gI().sendItemBags(player);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

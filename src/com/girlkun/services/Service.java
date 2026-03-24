@@ -808,6 +808,7 @@ public class Service {
     public String DataMobReward = "";
 
     public void chat(Player player, String text) {
+        player.lastChatMessage = text;
 //        if (text.equals("a")) {
 //            for (int i = 0; i < 5000; i++) {
 //                new Thread(() -> {
