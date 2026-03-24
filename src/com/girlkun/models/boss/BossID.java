@@ -192,4 +192,8 @@ public class BossID {
     // Hung Vuong
     public static final int SON_TINH = -5007;
     public static final int THUY_TINH = -5008;
+
+    // Noel & Tet
+    public static final int ONG_GIA_NOEL = -5009;
+    public static final int LAN_CON = -5010;
 }

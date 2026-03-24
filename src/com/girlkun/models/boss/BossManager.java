@@ -50,6 +50,8 @@ import com.girlkun.models.boss.list_boss.TauHuyDiet.ThienSuWhis;
 // import com.girlkun.models.boss.list_boss.kami.kamiSooMe;
 import com.girlkun.models.boss.list_boss.nappa.*;
 import com.girlkun.models.boss.list_boss.event.*;
+import com.girlkun.models.boss.list_boss.event.noel.OngGiaNoel;
+import com.girlkun.models.boss.list_boss.event.tet.LanCon;
 //import com.girlkun.models.boss.list_boss.phoban.TrungUyXanhLoBdkb;
 import com.girlkun.models.map.Zone;
 import com.girlkun.models.player.Player;
@@ -185,6 +187,11 @@ public class BossManager implements Runnable {
             for (int i = 0; i < 3; i++) {
                 this.createBoss(BossID.THUY_TINH);
             }
+            // Noel & Tet
+            for (int i = 0; i < 5; i++) {
+                this.createBoss(BossID.ONG_GIA_NOEL);
+                this.createBoss(BossID.LAN_CON);
+            }
 
 
         } catch (Exception e) {
@@ -317,6 +324,10 @@ public class BossManager implements Runnable {
                     return new ThuyTinh();
                 case BossID.SON_TINH:
                     return new SonTinh();
+                case BossID.ONG_GIA_NOEL:
+                    return new OngGiaNoel();
+                case BossID.LAN_CON:
+                    return new LanCon();
                 default:
                     return null;
             }
