@@ -2084,8 +2084,8 @@ public class UseItem {
 
     private void openWoodChest(Player pl, Item item) {
         List<String> infoItem = new ArrayList<>();
-        // int time = (int) TimeUtil.diffDate(new Date(), new Date(item.createTime), TimeUtil.DAY);
-        int time  = 1;
+        int time = (int) TimeUtil.diffDate(new Date(), new Date(item.createTime), TimeUtil.DAY);
+        // int time  = 1;
         if (time != 0) {
             int ruby = GetRubyFormWoodChest(pl, item);
             //Thêm quà cho rương
