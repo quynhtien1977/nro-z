@@ -16,6 +16,42 @@ public class LanCon extends Boss {
     private long lastTimeAtt;
     private long playerId;
     private boolean afk;
+    private int currentQuestionIndex = -1;
+    private long lastTimeAsk;
+
+    private static final String[][] TET_QA = {
+        {"Chúc mừng năm ... ?", "mới"},
+        {"Vạn sự như ... ?", "ý"},
+        {"Phát tài phát ... ?", "lộc"},
+        {"Sức khỏe dồi ... ?", "dào"},
+        {"An khang thịnh ... ?", "vượng"},
+        {"Cung hỉ phát ... ?", "tài"},
+        {"Tiền vô như ... ?", "nước"},
+        {"Mừng đảng mừng ... ?", "xuân"},
+        {"Bánh chưng xanh bên dưa hấu ... ?", "đỏ"},
+        {"Mai vàng nở rộ đón xuân ... ?", "sang"},
+        {"Tết đến xuân ... ?", "về"},
+        {"Thế gian ai là người đẹp nhất?", "Trúc"},
+        {" ... là người vừa xinh đẹp, dễ thương nhất", "Thư"},
+        {"Tân niên đại cát đại ... ?", "lợi"},
+        {"Phú quý cát ... ?", "tường"},
+        {"Mã đáo thành ... ?", "công"},
+        {"Thuận buồm xuôi ... ?", "gió"},
+        {"Gia đạo bình ... ?", "an"},
+        {"Làm ăn phát ... ?", "đạt"},
+        {"Công danh tấn ... ?", "tới"},
+        {"Tình duyên phơi ... ?", "phới"},
+        {"Trẻ mãi không ... ?", "già"},
+        {"Sống lâu trăm ... ?", "tuổi"},
+        {"Phước lộc thọ ... ?", "toàn"},
+        {"Phúc như đông ... ?", "hải"},
+        {"Thọ tỷ nam ... ?", "sơn"},
+        {"Tiền ra nhỏ giọt như cà phê ... ?", "phin"}, // Câu này hơi hài hước chút
+        {"Trăm hoa đua ... ?", "nở"},
+        {"Sum vầy đoàn ... ?", "viên"},
+        {"Ngập tràn niềm ... ?", "vui"},
+        {"Vui như ... ?", "Tết"}
+    };
 
     public LanCon() throws Exception {
         super(BossID.LAN_CON, BossesData.LAN_CON);
@@ -110,15 +146,22 @@ public class LanCon extends Boss {
             if (this.bossStatus == BossStatus.AFK) {
                 this.afk();
             } else if (!this.isDie()) {
+                if (Util.canDoWithTime(lastTimeAsk, 30000)) {
+                    currentQuestionIndex = Util.nextInt(0, TET_QA.length - 1);
+                    this.chat("Điền vào chỗ trống để ta đi theo nhé: " + TET_QA[currentQuestionIndex][0]);
+                    lastTimeAsk = System.currentTimeMillis();
+                }
+
                 if (this.zone != null && this.zone.getPlayers() != null) {
                     for (Player pl : this.zone.getPlayers()) {
-                        if (pl != null && !pl.isDie() && isPlayerChatThang(pl)) {
+                        if (pl != null && !pl.isDie() && isPlayerAnswerCorrect(pl)) {
                             this.changeToTypeNonPK();
                             this.playerId = Math.abs(pl.id);
-                            Service.gI().chat(pl, "Đi thôi lân con!");
+                            Service.gI().chat(pl, "Đi thôi Lân con!");
                             this.nPoint.hp = this.nPoint.hpMax;
                             this.changeStatus(BossStatus.AFK);
                             pl.lastChatMessage = ""; 
+                            currentQuestionIndex = -1;
                             break;
                         }
                     }
@@ -146,12 +189,13 @@ public class LanCon extends Boss {
                 damage = 500_000;
             }
 
-            if (damage >= this.nPoint.hp || isPlayerChatThang(plAtt)) {
+            if (damage >= this.nPoint.hp || isPlayerAnswerCorrect(plAtt)) {
                 this.changeToTypeNonPK();
                 this.playerId = Math.abs(plAtt.id);
-                Service.gI().chat(plAtt, "Đi thôi lân con!");
+                Service.gI().chat(plAtt, "Đi thôi Lân con!");
                 this.nPoint.hp = this.nPoint.hpMax;
                 this.changeStatus(BossStatus.AFK);
+                currentQuestionIndex = -1;
                 return 0;
             }
             this.nPoint.subHP(damage);
@@ -161,8 +205,24 @@ public class LanCon extends Boss {
         }
     }
 
-    private boolean isPlayerChatThang(Player plAtt) {   
-        String lastChat = plAtt.lastChatMessage;  
-        return lastChat != null && (lastChat.toLowerCase().contains("thắng") || lastChat.toLowerCase().contains("thang"));
+    private String normalizeString(String s) {
+        if (s == null) return "";
+        try {
+            String temp = java.text.Normalizer.normalize(s, java.text.Normalizer.Form.NFD);
+            java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+            return pattern.matcher(temp).replaceAll("").replace("đ", "d").replace("Đ", "D").toLowerCase();
+        } catch (Exception e) {
+            return s.toLowerCase();
+        }
+    }
+
+    private boolean isPlayerAnswerCorrect(Player plAtt) {   
+        if (currentQuestionIndex == -1) return false;
+        String lastChat = plAtt.lastChatMessage;
+        if (lastChat == null || lastChat.isEmpty()) return false;
+        
+        String answer = normalizeString(TET_QA[currentQuestionIndex][1]);
+        String normalizedChat = normalizeString(lastChat);
+        return normalizedChat.contains(answer);
     }
 }

@@ -188,7 +188,7 @@ public class BossManager implements Runnable {
                 this.createBoss(BossID.THUY_TINH);
             }
             // Noel & Tet
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 3; i++) {
                 this.createBoss(BossID.ONG_GIA_NOEL);
                 this.createBoss(BossID.LAN_CON);
             }
